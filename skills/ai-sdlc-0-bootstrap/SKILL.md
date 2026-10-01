@@ -71,6 +71,17 @@ Rules:
 - reuse if present
 - create minimal file only if missing
 
+The template ships a **Python + FastAPI default profile**: the devcontainer
+image, `environments/python/`, `scripts/setup-python.sh` and the Python block
+in `.gitignore`. Setup copies the profile's `requirements.txt`,
+`.python-version` and `.vscode/launch.json` to the root.
+
+- Python chosen → keep the profile; adjust `requirements.txt` to the chosen
+  framework and commit the copied root files.
+- Another stack chosen → replace the profile (devcontainer image, `.gitignore`
+  block, setup script) with that stack's equivalents and remove
+  `environments/python/`; ask the user first.
+
 ---
 
 ### 4. Documentation
@@ -106,9 +117,9 @@ Identify:
   BOOTSTRAP" instruction line, README's template setup/"Create a project"
   steps) — replace with the real project's own content instead of removing
   the file
-- template identity: README badges (AI-SDLC, DOI, arXiv), `CITATION.cff` and
-  `.zenodo.json` describe the template, not the derived project — replace or
-  remove them for the project
+- template identity: README badges (AI-SDLC, DOI, arXiv), `CITATION.cff`,
+  `.zenodo.json` and the owner in `.github/CODEOWNERS` describe the template,
+  not the derived project — replace or remove them for the project
 
 Ask the user before removing anything.
 
