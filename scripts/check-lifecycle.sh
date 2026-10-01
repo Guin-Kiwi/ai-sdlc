@@ -80,6 +80,13 @@ for uc in docs/specs/UC-*.md; do
   done <<< "$headings"
 done
 
+for n in $(ls docs/specs/UC-[0-9]*.md 2>/dev/null | sed -E 's#.*/UC-([0-9]+)-.*#\1#' | sort | uniq -d); do
+  fail "duplicate use-case number $n in docs/specs/; renumber before merging"
+done
+for n in $(ls docs/adr/ADR-[0-9]*.md 2>/dev/null | sed -E 's#.*/ADR-([0-9]+)-.*#\1#' | sort | uniq -d); do
+  fail "duplicate ADR number $n in docs/adr/; renumber before merging"
+done
+
 if [ "$failures" -eq 0 ]; then
   echo "✓ AI-SDLC lifecycle checks passed"
 else
