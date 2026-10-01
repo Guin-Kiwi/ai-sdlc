@@ -16,9 +16,9 @@ Align the repository with the **intended system** and prepare it for AI-SDLC.
 Clarify with the user:
 
 - system / app purpose
-- language
 - framework
-- runtime
+
+The language is Python (ADR-000); do not ask for it.
 
 If unclear → ask before proceeding.
 
@@ -52,7 +52,7 @@ tests/e2e
 Rules:
 
 - create only missing directories; do not add directory-marker files such as
-  `__init__.py` unless required by the selected language or framework
+  `__init__.py` unless required by the selected framework
 - reuse existing structure if compatible
 - do not duplicate or restructure unnecessarily
 
@@ -64,7 +64,6 @@ Check for:
 
 requirements.txt  
 pyproject.toml  
-package.json  
 
 Rules:
 
@@ -76,11 +75,9 @@ image, `environments/python/`, `scripts/setup-python.sh` and the Python block
 in `.gitignore`. Setup copies the profile's `requirements.txt`,
 `.python-version` and `.vscode/launch.json` to the root.
 
-- Python chosen → keep the profile; adjust `requirements.txt` to the chosen
-  framework and commit the copied root files.
-- Another stack chosen → replace the profile (devcontainer image, `.gitignore`
-  block, setup script) with that stack's equivalents and remove
-  `environments/python/`; ask the user first.
+Keep the profile; adjust `requirements.txt` to the chosen framework and commit
+the copied root files. A non-Python project is outside this template's scope
+(ADR-000); stop and ask the user.
 
 ---
 

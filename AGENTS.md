@@ -86,8 +86,9 @@ primary source of truth.
 ## Commands
 
 Use the project-specific install, test, run and release commands documented in
-`docs/PROJECT.md`. Do not assume a language, framework or deployment platform
-before the project context has been completed.
+`docs/PROJECT.md`. The language is Python
+([ADR-000](docs/adr/ADR-000-python-as-project-language.md)). Do not assume a
+framework or deployment platform before the project context has been completed.
 
 ---
 

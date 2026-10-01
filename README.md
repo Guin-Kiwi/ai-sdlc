@@ -38,8 +38,9 @@ configured during DEPLOY.
 
 The default stack profile is **Python + FastAPI**: Codespaces creates a Python
 development container with Python, Pylance, debugging and GitHub Copilot
-extensions, and `scripts/setup-python.sh` prepares `.venv`. BOOTSTRAP keeps
-this profile or replaces it if your project uses another stack. The default
+extensions, and `scripts/setup-python.sh` prepares `.venv`. This template
+assumes Python ([ADR-000](docs/adr/ADR-000-python-as-project-language.md));
+BOOTSTRAP keeps the profile and adjusts the framework. The default
 terminal locale is English; the VS Code UI uses its own user display-language
 setting.
 
