@@ -22,8 +22,9 @@ application-specific code.
    - GitHub Copilot Chat: `/ai-sdlc`, then choose `bootstrap`
    - Claude Code: `/ai-sdlc-0-bootstrap`
    - Other agents: ask them to follow `AGENTS.md` and start phase 0
-   BOOTSTRAP completes `docs/PROJECT.md`, then removes this template's own
-   commentary, badges and citation files from your project.
+   BOOTSTRAP completes `docs/PROJECT.md`, then proposes removal or replacement
+   of this template's own commentary, badges and citation files. The agent
+   asks for confirmation before removing or replacing template identity.
 4. For each feature, open a **Use case** issue and ask your agent to start
    SPECIFY from it. Progress is recorded in `docs/TASKS.md`.
 
