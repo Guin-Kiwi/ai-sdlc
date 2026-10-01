@@ -55,6 +55,8 @@ DEPLOY → SPECIFY (feedback)
 
 Before making any change, load context in this order:
 
+0. `docs/INDEX.json` — machine-readable map of phases, skills and which files
+  need human review before editing; load this first.
 1. `docs/TASKS.md`
 2. `docs/PROJECT.md`
 3. `docs/specs/UC-[NNN]-[NAME].md` (or the eligible Fast Track task entry)

@@ -1,0 +1,15 @@
+{
+  "phase": 5,
+  "name": "ai-sdlc-5-deploy",
+  "goal": "Verify the continuous deployment workflow for the validated artifact. Deployment is defined together with the user, never unilaterally.",
+  "check": ".github/workflows/",
+  "if_cd_workflow_exists": ["verify trigger", "verify deployment step", "verify required secrets", "update only if necessary"],
+  "if_no_cd_workflow": ["ask the user for deployment platform", "propose a minimal workflow", "create only after confirmation"],
+  "rules": [
+    "Prefer verifying existing workflows.",
+    "Do not overwrite workflows without confirmation.",
+    "Never store secrets in the repository."
+  ],
+  "output": "Deployment workflow verified or updated.",
+  "record_in": "docs/TASKS.md"
+}

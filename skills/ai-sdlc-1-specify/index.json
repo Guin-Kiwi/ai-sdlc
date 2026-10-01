@@ -1,0 +1,23 @@
+{
+  "phase": 1,
+  "name": "ai-sdlc-1-specify",
+  "goal": "Create or update a minimal use case specification.",
+  "required_input": ["user story or feature description"],
+  "ask_user_if_unclear": true,
+  "fast_track": "Use the existing UC or task entry per AGENTS.md; no new UC required. Record acceptance and planned checks, then phase 1.",
+  "use_case_file": {
+    "path": "docs/specs/UC-[NNN]-[NAME].md",
+    "numbering": "NNN = sequential (001, 002, ...), scan docs/specs/ for the next number",
+    "naming": "NAME = short uppercase identifier, words separated with -",
+    "template": "docs/specs/UC-TEMPLATE.md",
+    "update_existing_first": true
+  },
+  "sections_to_fill": ["Intent", "Actors", "Preconditions", "Flow", "Errors", "Acceptance", "Tests"],
+  "rules": [
+    "Prefer updating existing UC files over creating new ones.",
+    "Do not invent functionality.",
+    "Do not generate code or tests in this phase."
+  ],
+  "output": "UC specification created or updated.",
+  "record_in": "docs/TASKS.md"
+}
