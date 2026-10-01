@@ -24,6 +24,10 @@
     { "path": "skills/", "edit": "agent-maintained", "note": "Phase guidance. If a phase's steps change, update its index.json to match." },
     { "path": "CITATION.cff", "edit": "human-review-required", "note": "Describes the template, not a derived project; revisit at BOOTSTRAP. Confirm with user before changing." },
     { "path": ".zenodo.json", "edit": "human-review-required", "note": "Describes the template, not a derived project; revisit at BOOTSTRAP. Confirm with user before changing." },
-    { "path": ".github/workflows/", "edit": "review-recommended", "note": "CI/CD gates. Re-check the structure tests in ci.yml/release.yml after edits." }
+    { "path": "CLAUDE.md", "edit": "human-review-required", "note": "Imports AGENTS.md for Claude Code; keep it a one-line import." },
+    { "path": ".github/CODEOWNERS", "edit": "human-review-required", "note": "Lists the files above that need owner review; replace the owner at BOOTSTRAP." },
+    { "path": ".github/workflows/", "edit": "human-review-required", "note": "CI/CD gates. CI runs scripts/check-lifecycle.sh and, if present, scripts/test.sh." },
+    { "path": "scripts/check-lifecycle.sh", "edit": "agent-maintained", "note": "Lifecycle consistency checks run by CI; extend when artefacts or templates change." },
+    { "path": "scripts/check-setup.sh", "edit": "agent-maintained", "note": "Local setup check (skill links, CLAUDE.md, environment); run after setup." }
   ]
 }

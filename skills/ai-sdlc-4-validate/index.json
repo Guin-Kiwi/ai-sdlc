@@ -8,7 +8,7 @@
     { "step": "run local tests", "detail": "Run the project-specific unit and integration test commands from docs/PROJECT.md; verify both pass." },
     { "step": "verify e2e tests", "detail": "Check tests/e2e/; extend existing tests if needed; create only if none exist." },
     { "step": "verify Dockerfile", "detail": "Check Dockerfile builds and starts the application; create only if missing." },
-    { "step": "verify CI", "detail": "Check .github/workflows/ci.yml runs unit and integration tests; create only if missing." },
+    { "step": "verify CI", "detail": "CI and release run scripts/test.sh when it exists; create or update it to run the unit and integration test commands from docs/PROJECT.md. Do not add a separate test workflow." },
     { "step": "verify release workflow", "detail": "Check .github/workflows/release.yml builds the container, runs e2e tests, publishes the artifact; create only if missing." }
   ],
   "rules": [

@@ -16,31 +16,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verify required AI-SDLC artefacts
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -f AGENTS.md
-          test -f docs/PROJECT.md
-          test -f docs/TASKS.md
-          test -f docs/specs/UC-TEMPLATE.md
-          test -f docs/adr/ADR-TEMPLATE.md
-          test -f docs/INDEX.json
-          test -f docs/STANDARDS.md
-          test -f docs/AGENT-GUIDANCE.md
-          test -f .github/copilot-instructions.md
-          test -d skills
-          test -d .devcontainer
-
-      - name: Verify skill and index files
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 -m json.tool docs/INDEX.json > /dev/null
-          for dir in skills/*/; do
-            test -f "${dir}SKILL.md"
-            python3 -m json.tool "${dir}index.json" > /dev/null
-          done
+      - name: Check AI-SDLC lifecycle artefacts
+        run: bash scripts/check-lifecycle.sh
 
       - name: Check whitespace errors
         run: git diff --check
+
+      - name: Run project tests
+        shell: bash
+        run: |
+          if [ -f scripts/test.sh ]; then
+            bash scripts/test.sh
+          else
+            echo "::notice::No scripts/test.sh yet. Add it during VALIDATE with the project's test commands."
+          fi

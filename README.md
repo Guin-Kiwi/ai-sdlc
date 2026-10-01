@@ -13,43 +13,51 @@ application-specific code.
 
 ## Create a project
 
-1. Select **Use this template** on GitHub and create a new repository.
-2. Open the new repository in GitHub Codespaces and run the agent setup below.
-3. Complete `docs/PROJECT.md` with the project context, architecture and commands.
-   The first objective in `docs/TASKS.md` walks through this and then strips
-   template-only commentary (Bootstrap skill, step 5).
-4. Start the lifecycle with `AGENTS.md` and record progress in `docs/TASKS.md`.
-5. Use `docs/specs/UC-TEMPLATE.md` for the first use-case specification.
+1. Select **Use this template** on GitHub and create a new repository. A
+   one-time **"Define the project (BOOTSTRAP)"** issue opens with a checklist.
+2. Open the new repository in GitHub Codespaces. Setup runs automatically and
+   ends with `scripts/check-setup.sh`; run it again any time to confirm agents
+   can find the skills.
+3. Start BOOTSTRAP with your agent:
+   - GitHub Copilot Chat: `/ai-sdlc`, then choose `bootstrap`
+   - Claude Code: `/ai-sdlc-0-bootstrap`
+   - Other agents: ask them to follow `AGENTS.md` and start phase 0
+   BOOTSTRAP completes `docs/PROJECT.md`, then removes this template's own
+   commentary, badges and citation files from your project.
+4. For each feature, open a **Use case** issue and ask your agent to start
+   SPECIFY from it. Progress is recorded in `docs/TASKS.md`.
 
-GitHub Copilot instructions are provided in `.github/copilot-instructions.md`.
-The included GitHub Actions workflows check the required AI-SDLC structure and
-provide a technology-neutral source release baseline. Add project-specific
-build, test and artifact-publishing steps during VALIDATE.
-`.github/workflows/cd.yml` is included as an inactive template and must be
-configured during DEPLOY, after the deployment platform, required secrets and
-post-deploy checks have been decided.
+The included GitHub Actions workflows run `scripts/check-lifecycle.sh` (are
+the AI-SDLC artefacts present and consistent?) and, once it exists,
+`scripts/test.sh` (added during VALIDATE). `.github/CODEOWNERS` marks the files
+that need human review; turn on "Require review from Code Owners" in branch
+protection to enforce it. `.github/workflows/cd.yml` is an inactive template,
+configured during DEPLOY.
 
 ## Agent setup
 
-Codespaces creates a Python development container with Python, Pylance,
-debugging and GitHub Copilot extensions. It also prepares `.agents/skills` and
-the Python environment automatically. The default terminal locale is English;
-the VS Code UI uses its own user display-language setting.
+The default stack profile is **Python + FastAPI**: Codespaces creates a Python
+development container with Python, Pylance, debugging and GitHub Copilot
+extensions, and `scripts/setup-python.sh` prepares `.venv`. BOOTSTRAP keeps
+this profile or replaces it if your project uses another stack. The default
+terminal locale is English; the VS Code UI uses its own user display-language
+setting.
 
-Run `bash scripts/setup-skills.sh` from the repository root when another agent
-is used. Run `bash scripts/setup-python.sh` again when the Python environment
-needs to be recreated or refreshed.
+Codespaces links the skills for all supported agents. Run
+`bash scripts/setup-skills.sh` yourself when working outside Codespaces. Run
+`bash scripts/setup-python.sh` again when the Python environment needs to be
+recreated or refreshed.
 Choose `copilot`, `codex`, `claude`, `cline`, `opencode`, `cursor`, `kiro`,
 `junie`, `devin` or `all`. The script links to the canonical `skills/` directory and
 falls back to copying if links are unavailable. Existing destinations are kept;
 copies must be refreshed manually after skill changes. Verify discovery in your
 agent; setup does not install or configure the agent itself.
 
-For non-interactive setup, pass the same selection, for example `bash scripts/setup-skills.sh copilot`. The `claude` and `all` selections also create a missing `CLAUDE.md` containing `@AGENTS.md`; an existing file is preserved. Shared instructions and skills are not modified.
+For non-interactive setup, pass the same selection, for example `bash scripts/setup-skills.sh copilot`. `CLAUDE.md` (which imports `AGENTS.md`) is included in the repository; the `claude` and `all` selections recreate it if missing. Skill links are per-machine and ignored by git.
 
 ## Repository artefacts
 
-- `AGENTS.md` — lifecycle router and guardrails
+- `AGENTS.md` — lifecycle router and guardrails (`CLAUDE.md` imports it)
 - `docs/INDEX.json` — machine-readable map of phases, skills and edit policy
 - `docs/PROJECT.md` — project context and commands
 - `docs/TASKS.md` — current lifecycle state
@@ -60,7 +68,10 @@ For non-interactive setup, pass the same selection, for example `bash scripts/se
 - `docs/future/` — non-binding roadmap notes
 - `skills/ai-sdlc-*` — phase-specific execution guidance
 - `.devcontainer/` — Codespaces and VS Code baseline
-- `environments/python/` — Python environment profile, including the source
-  VS Code debug configuration
-- `scripts/setup-python.sh` — Python environment and dependency setup
-- `.github/` — Copilot instructions, CI, release and CD workflow templates
+- `environments/python/` — default Python + FastAPI profile, including the
+  source VS Code debug configuration
+- `scripts/setup-skills.sh`, `scripts/setup-python.sh` — agent and environment setup
+- `scripts/check-setup.sh` — confirms local setup worked
+- `scripts/check-lifecycle.sh` — artefact consistency checks run by CI
+- `.github/` — Copilot instructions and `/ai-sdlc` prompt, CODEOWNERS, PR and
+  use-case issue templates, CI, release, bootstrap-issue and CD workflows

@@ -70,12 +70,14 @@ Check:
 
 .github/workflows/ci.yml
 
-CI should run:
+CI and release run `scripts/test.sh` when it exists. Create or update it so it
+runs:
 
-- unit tests  
+- unit tests
 - integration tests
 
-Create only if missing.
+using the commands documented in `docs/PROJECT.md`. Do not add a separate test
+workflow.
 
 ---
 
