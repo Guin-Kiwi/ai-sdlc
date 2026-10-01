@@ -10,6 +10,7 @@
   "fast_track": "Confirm existing architecture in the task entry; skip full DESIGN.",
   "decisions": {
     "significant_choices": "docs/adr/ADR-NNN-short-title.md (unused number)",
+    "template": "docs/adr/ADR-TEMPLATE.md",
     "adr_contents": ["status", "context", "alternatives", "decision", "consequences"],
     "on_human_acceptance": "update docs/PROJECT.md and propose durable rules in AGENTS.md",
     "superseded_adrs": "preserve, never delete; review related changes together"

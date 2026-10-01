@@ -16,6 +16,8 @@ application-specific code.
 1. Select **Use this template** on GitHub and create a new repository.
 2. Open the new repository in GitHub Codespaces and run the agent setup below.
 3. Complete `docs/PROJECT.md` with the project context, architecture and commands.
+   The first objective in `docs/TASKS.md` walks through this and then strips
+   template-only commentary (Bootstrap skill, step 5).
 4. Start the lifecycle with `AGENTS.md` and record progress in `docs/TASKS.md`.
 5. Use `docs/specs/UC-TEMPLATE.md` for the first use-case specification.
 
@@ -48,9 +50,14 @@ For non-interactive setup, pass the same selection, for example `bash scripts/se
 ## Repository artefacts
 
 - `AGENTS.md` — lifecycle router and guardrails
+- `docs/INDEX.json` — machine-readable map of phases, skills and edit policy
 - `docs/PROJECT.md` — project context and commands
 - `docs/TASKS.md` — current lifecycle state
 - `docs/specs/` — executable use-case specifications
+- `docs/adr/` — architecture decision records and their template
+- `docs/STANDARDS.md` — security and quality references (NIST SSDF, OWASP ASVS)
+- `docs/AGENT-GUIDANCE.md` — worked examples for applying the agent rules
+- `docs/future/` — non-binding roadmap notes
 - `skills/ai-sdlc-*` — phase-specific execution guidance
 - `.devcontainer/` — Codespaces and VS Code baseline
 - `environments/python/` — Python environment profile, including the source

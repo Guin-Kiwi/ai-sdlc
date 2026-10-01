@@ -86,9 +86,11 @@ Rules:
 
 Content:
 
-- system purpose
+- purpose
 - architecture
-- run command
+- structure
+- commands
+- dependencies
 
 ---
 
@@ -104,6 +106,9 @@ Identify:
   BOOTSTRAP" instruction line, README's template setup/"Create a project"
   steps) — replace with the real project's own content instead of removing
   the file
+- template identity: README badges (AI-SDLC, DOI, arXiv), `CITATION.cff` and
+  `.zenodo.json` describe the template, not the derived project — replace or
+  remove them for the project
 
 Ask the user before removing anything.
 

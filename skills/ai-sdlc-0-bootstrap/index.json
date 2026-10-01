@@ -8,9 +8,10 @@
     "Inspect existing structure (src/, tests/), dependency files, existing code and tests.",
     "Align Clean Architecture dirs (src/app/domain|application|interfaces|infrastructure, tests/unit|integration|e2e); create only what's missing, reuse what's compatible.",
     "Check for a dependency manifest (requirements.txt | pyproject.toml | package.json); reuse if present, create minimal only if missing.",
-    "Ensure docs/PROJECT.md exists and is updated: system purpose, architecture, run command.",
+    "Ensure docs/PROJECT.md exists and is updated: purpose, architecture, structure, commands, dependencies.",
     "Identify unused files or mismatched structure; ask the user before removing anything.",
-    "Once the project is established, strip template-only meta commentary (docs/PROJECT.md's BOOTSTRAP instruction line, README's template setup steps) and replace with the real project's own content; ask the user first."
+    "Once the project is established, strip template-only meta commentary (docs/PROJECT.md's BOOTSTRAP instruction line, README's template setup steps) and replace with the real project's own content; ask the user first.",
+    "Replace or remove template identity (README badges, CITATION.cff, .zenodo.json), which describes the template rather than the derived project; ask the user first."
   ],
   "output": "Repository aligned with intended system.",
   "record_in": "docs/TASKS.md"

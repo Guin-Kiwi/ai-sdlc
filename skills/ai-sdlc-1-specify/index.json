@@ -12,7 +12,8 @@
     "template": "docs/specs/UC-TEMPLATE.md",
     "update_existing_first": true
   },
-  "sections_to_fill": ["Intent", "Actors", "Preconditions", "Flow", "Errors", "Acceptance", "Tests"],
+  "sections_to_fill": ["Goal", "Business value", "Scope (in / out)", "Actors", "Preconditions", "Trigger", "Main flow", "Alternate / edge flows", "Errors / failure cases", "Acceptance criteria", "Security / trust-boundary notes", "Validation plan", "Open questions / assumptions", "Notes for implementation"],
+  "inapplicable_sections": "write \"none\"",
   "rules": [
     "Prefer updating existing UC files over creating new ones.",
     "Do not invent functionality.",

@@ -16,13 +16,14 @@
     { "path": "docs/TASKS.md", "edit": "agent-maintained", "note": "Update PHASE/STATUS every session; set done only after verifying output." },
     { "path": "docs/PROJECT.md", "edit": "collaborative", "note": "Fill in and keep current during BOOTSTRAP and later phases; needs user input, not invention." },
     { "path": "docs/specs/UC-TEMPLATE.md", "edit": "do-not-fill", "note": "Copy to docs/specs/UC-[NNN]-[NAME].md; never fill in the template itself." },
+    { "path": "docs/adr/ADR-TEMPLATE.md", "edit": "do-not-fill", "note": "Copy to docs/adr/ADR-[NNN]-[short-title].md; never fill in the template itself." },
     { "path": "docs/adr/", "edit": "agent-maintained", "note": "One ADR per significant DESIGN decision (ADR-NNN-short-title.md); never delete, mark superseded instead." },
     { "path": "docs/STANDARDS.md", "edit": "agent-maintained", "note": "Secondary reference (NIST SSDF, OWASP ASVS). Lower priority than TASKS.md/PROJECT.md/active UC." },
     { "path": "docs/AGENT-GUIDANCE.md", "edit": "agent-maintained", "note": "Supplementary practices not already covered in AGENTS.md; keep it from re-duplicating the router." },
     { "path": "docs/future/", "edit": "agent-maintained", "note": "Non-binding roadmap notes; nothing here is adopted until it has an ADR." },
     { "path": "skills/", "edit": "agent-maintained", "note": "Phase guidance. If a phase's steps change, update its index.json to match." },
-    { "path": "CITATION.cff", "edit": "human-review-required", "note": "Citation metadata tied to releases; confirm with user before changing." },
-    { "path": ".zenodo.json", "edit": "human-review-required", "note": "Archival metadata tied to releases; confirm with user before changing." },
+    { "path": "CITATION.cff", "edit": "human-review-required", "note": "Describes the template, not a derived project; revisit at BOOTSTRAP. Confirm with user before changing." },
+    { "path": ".zenodo.json", "edit": "human-review-required", "note": "Describes the template, not a derived project; revisit at BOOTSTRAP. Confirm with user before changing." },
     { "path": ".github/workflows/", "edit": "review-recommended", "note": "CI/CD gates. Re-check the structure tests in ci.yml/release.yml after edits." }
   ]
 }

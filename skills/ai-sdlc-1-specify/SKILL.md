@@ -48,17 +48,25 @@ If a UC for the feature already exists → **update it instead of creating a new
 
 docs/specs/UC-TEMPLATE.md
 
-2. Create or update the UC with minimal content:
+2. Create or update the UC with minimal content, following the template's
+   sections:
 
-Intent  
-Actors  
-Preconditions  
-Flow  
-Errors  
-Acceptance  
-Tests
+- Goal
+- Business value
+- Scope (in / out)
+- Actors
+- Preconditions
+- Trigger
+- Main flow
+- Alternate / edge flows
+- Errors / failure cases
+- Acceptance criteria
+- Security / trust-boundary notes
+- Validation plan
+- Open questions / assumptions
+- Notes for implementation
 
-Do not add unnecessary text.
+Do not add unnecessary text. Write "none" for sections that don't apply.
 
 ---
 

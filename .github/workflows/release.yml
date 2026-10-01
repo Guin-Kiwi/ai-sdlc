@@ -24,8 +24,22 @@ jobs:
           test -f docs/PROJECT.md
           test -f docs/TASKS.md
           test -f docs/specs/UC-TEMPLATE.md
+          test -f docs/adr/ADR-TEMPLATE.md
+          test -f docs/INDEX.json
+          test -f docs/STANDARDS.md
+          test -f docs/AGENT-GUIDANCE.md
           test -f .github/copilot-instructions.md
           test -d skills
+
+      - name: Verify skill and index files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m json.tool docs/INDEX.json > /dev/null
+          for dir in skills/*/; do
+            test -f "${dir}SKILL.md"
+            python3 -m json.tool "${dir}index.json" > /dev/null
+          done
 
       - name: Check whitespace errors
         run: git diff --check
