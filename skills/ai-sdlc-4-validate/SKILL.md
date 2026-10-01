@@ -13,7 +13,7 @@ Required CI/review remain; no incidental release or deployment.
 
 ## Goal
 
-Verify that the repository is **release-ready**.
+Verify that the repository is ready for its declared release path.
 
 Focus on **checking existing artifacts**.
 
@@ -40,27 +40,26 @@ Verify:
 
 ---
 
-### 2. Verify E2E Tests
+### 2. Verify E2E Tests when declared
 
-Check:
+If `docs/PROJECT.md` declares an E2E command or an E2E release requirement,
+check:
 
 tests/e2e/
 
-Extend existing tests if needed.
-
-Create tests only if none exist.
+Extend existing tests if needed. If E2E is not declared, record it as not
+applicable rather than inventing an application-level test.
 
 ---
 
-### 3. Verify Dockerfile
+### 3. Verify the declared artifact
 
-Check:
+If `docs/PROJECT.md` declares a container artifact, check:
 
 Dockerfile
 
-Verify the container builds and starts the application.
-
-Create only if missing.
+Verify the container builds and starts the application. If no container or
+other build artifact is declared, record the artifact check as not applicable.
 
 ---
 
@@ -70,8 +69,7 @@ Check:
 
 .github/workflows/ci.yml
 
-CI and release run `scripts/test.sh` when it exists. Create or update it so it
-runs:
+CI and release run `scripts/test.sh`. Create or update it so it runs:
 
 - unit tests
 - integration tests
@@ -87,11 +85,10 @@ Check:
 
 .github/workflows/release.yml
 
-Verify it:
-
-- builds the container
-- runs E2E tests
-- publishes the artifact
+Verify it runs `scripts/test.sh` and publishes the artifact declared in
+`docs/PROJECT.md`, when one exists. Verify the declared E2E checks there as
+well. A template repository with no application artifact may publish a source
+release and record container/E2E checks as not applicable.
 
 Create only if missing.
 
