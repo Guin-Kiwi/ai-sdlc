@@ -2,6 +2,7 @@
 # Replace the owner with your own GitHub user or team during BOOTSTRAP.
 /AGENTS.md            @Guin-Kiwi
 /CLAUDE.md            @Guin-Kiwi
+/CONTRIBUTING.md      @Guin-Kiwi
 /docs/INDEX.json      @Guin-Kiwi
 /CITATION.cff         @Guin-Kiwi
 /.zenodo.json         @Guin-Kiwi

@@ -50,6 +50,7 @@ DEPLOY → SPECIFY (feedback)
 - Human-approved decisions → ADR; current architecture → `docs/PROJECT.md`.
 - Durable rules + ADR links → `AGENTS.md`, with human approval/review.
 - Update related files together; preserve decision history and reconcile parallel changes.
+- Team workflow, change-size ladder, branches, PRs and agent git rules → `CONTRIBUTING.md`.
 
 ## Context Load Order
 

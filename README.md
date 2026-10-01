@@ -26,7 +26,9 @@ application-specific code.
    of this template's own commentary, badges and citation files. The agent
    asks for confirmation before removing or replacing template identity.
 4. For each feature, open a **Use case** issue and ask your agent to start
-   SPECIFY from it. Progress is recorded in `docs/TASKS.md`.
+   SPECIFY from it. Progress is recorded in `docs/TASKS.md`. Smaller changes
+   need no issue; `CONTRIBUTING.md` explains which level a change belongs to
+   and how branches, PRs and reviews work in a team.
 
 The included GitHub Actions workflows run `scripts/check-lifecycle.sh` (are
 the AI-SDLC artefacts present and consistent?) and `scripts/test.sh`, the
@@ -61,6 +63,8 @@ For non-interactive setup, pass the same selection, for example `bash scripts/se
 ## Repository artefacts
 
 - `AGENTS.md` — lifecycle router and guardrails (`CLAUDE.md` imports it)
+- `CONTRIBUTING.md` — team workflow: change-size ladder, branches, PRs, agent
+  git rules, repository setup
 - `docs/INDEX.json` — machine-readable map of phases, skills and edit policy
 - `docs/PROJECT.md` — project context and commands
 - `docs/TASKS.md` — current lifecycle state

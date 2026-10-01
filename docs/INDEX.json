@@ -13,6 +13,7 @@
   "key_files": [
     { "path": "AGENTS.md", "edit": "human-review-required", "note": "Router. Changes need explicit human approval before use." },
     { "path": "docs/INDEX.json", "edit": "human-review-required", "note": "This file. Keep in sync with AGENTS.md and the skills it maps; treat edits like router edits." },
+    { "path": "CONTRIBUTING.md", "edit": "human-review-required", "note": "Team workflow: change-size ladder (commit, Fast Track, use case, ADR), branch and PR rules, agent git rules, ruleset setup." },
     { "path": "docs/TASKS.md", "edit": "agent-maintained", "note": "Update PHASE/STATUS every session; set done only after verifying output." },
     { "path": "docs/PROJECT.md", "edit": "collaborative", "note": "Fill in and keep current during BOOTSTRAP and later phases; needs user input, not invention." },
     { "path": "docs/specs/UC-TEMPLATE.md", "edit": "do-not-fill", "note": "Copy to docs/specs/UC-[NNN]-[NAME].md; never fill in the template itself." },
