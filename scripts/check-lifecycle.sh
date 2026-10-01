@@ -45,6 +45,32 @@ if [[ "$phase" =~ ^[1-5]$ ]] && grep -q 'TBD' docs/PROJECT.md; then
   fail "docs/PROJECT.md still contains TBD after BOOTSTRAP (PHASE $phase)"
 fi
 
+current_use_case=$(awk '/^## Current Use Case/{inside=1; next} inside && NF {gsub(/`/, ""); print; exit} /^## /{inside=0}' docs/TASKS.md)
+if [[ "$phase" =~ ^[1-5]$ ]]; then
+  if [[ -z "$current_use_case" || "$current_use_case" == *'UC-[NNN]-[NAME]'* ]]; then
+    fail "docs/TASKS.md must name a concrete current use case after BOOTSTRAP"
+  elif [ ! -f "$current_use_case" ]; then
+    fail "docs/TASKS.md current use case does not exist: $current_use_case"
+  fi
+fi
+
+if [ "$status" = "done" ]; then
+  evidence=$(awk '/^## Evidence links/{inside=1; next} /^## /{inside=0} inside' docs/TASKS.md)
+  acceptance=$(awk '/^## Acceptance \/ validation cues/{inside=1; next} /^## /{inside=0} inside' docs/TASKS.md)
+  if [ -z "$(printf '%s' "$evidence" | sed '/^[[:space:]]*$/d')" ] || \
+     printf '%s' "$evidence" | grep -Eq 'Link to the relevant|What artefact|What evidence'; then
+    fail "STATUS: done requires concrete evidence links in docs/TASKS.md"
+  fi
+  if [ -z "$(printf '%s' "$acceptance" | sed '/^[[:space:]]*$/d')" ] || \
+     printf '%s' "$acceptance" | grep -Eq 'What should be true|What evidence will show'; then
+    fail "STATUS: done requires concrete acceptance or validation cues in docs/TASKS.md"
+  fi
+fi
+
+if [[ "$phase" =~ ^[4-5]$ ]] && [ ! -f scripts/test.sh ]; then
+  fail "scripts/test.sh is required from VALIDATE onward"
+fi
+
 headings=$(grep '^## ' docs/specs/UC-TEMPLATE.md)
 for uc in docs/specs/UC-*.md; do
   [ "$uc" = docs/specs/UC-TEMPLATE.md ] && continue

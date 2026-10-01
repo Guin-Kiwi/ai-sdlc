@@ -28,10 +28,11 @@ application-specific code.
    SPECIFY from it. Progress is recorded in `docs/TASKS.md`.
 
 The included GitHub Actions workflows run `scripts/check-lifecycle.sh` (are
-the AI-SDLC artefacts present and consistent?) and, once it exists,
-`scripts/test.sh` (added during VALIDATE). `.github/CODEOWNERS` marks the files
-that need human review; turn on "Require review from Code Owners" in branch
-protection to enforce it. `.github/workflows/cd.yml` is an inactive template,
+the AI-SDLC artefacts present and consistent?) and `scripts/test.sh`, the
+project's test entrypoint. It ships running only the lifecycle checks; extend
+it with your project's tests during VALIDATE. `.github/CODEOWNERS` marks the
+files that need human review; turn on "Require review from Code Owners" in
+branch protection to enforce it. `.github/workflows/cd.yml` is an inactive template,
 configured during DEPLOY.
 
 ## Agent setup
@@ -74,5 +75,7 @@ For non-interactive setup, pass the same selection, for example `bash scripts/se
 - `scripts/setup-skills.sh`, `scripts/setup-python.sh` — agent and environment setup
 - `scripts/check-setup.sh` — confirms local setup worked
 - `scripts/check-lifecycle.sh` — artefact consistency checks run by CI
+- `scripts/test.sh` — project test entrypoint run by CI and release;
+  `scripts/test-lifecycle.sh` holds scenario tests for the lifecycle checker
 - `.github/` — Copilot instructions and `/ai-sdlc` prompt, CODEOWNERS, PR and
   use-case issue templates, CI, release, bootstrap-issue and CD workflows
