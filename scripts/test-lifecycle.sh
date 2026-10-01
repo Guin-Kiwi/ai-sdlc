@@ -108,6 +108,20 @@ d=$(make_fixture develop-no-test-script 3 in-progress "$UC_OK" "$ACCEPT_OK" "$EV
 rm "$d/scripts/test.sh"
 expect_pass "DEVELOP without scripts/test.sh" "$d"
 
+d=$(make_fixture distinct-numbers 1 in-progress "$UC_OK" "$ACCEPT_OK" "$EVIDENCE_OK")
+cp "$d/docs/specs/UC-900-FIXTURE.md" "$d/docs/specs/UC-901-OTHER.md"
+cp "$d/docs/adr/ADR-TEMPLATE.md" "$d/docs/adr/ADR-901-other.md"
+expect_pass "distinct use-case and ADR numbers" "$d"
+
+d=$(make_fixture duplicate-uc 1 in-progress "$UC_OK" "$ACCEPT_OK" "$EVIDENCE_OK")
+cp "$d/docs/specs/UC-900-FIXTURE.md" "$d/docs/specs/UC-900-OTHER.md"
+expect_fail "duplicate use-case number" "$d" "duplicate use-case number 900"
+
+d=$(make_fixture duplicate-adr 1 in-progress "$UC_OK" "$ACCEPT_OK" "$EVIDENCE_OK")
+cp "$d/docs/adr/ADR-TEMPLATE.md" "$d/docs/adr/ADR-900-first.md"
+cp "$d/docs/adr/ADR-TEMPLATE.md" "$d/docs/adr/ADR-900-second.md"
+expect_fail "duplicate ADR number" "$d" "duplicate ADR number 900"
+
 if [ "$failures" -eq 0 ]; then
   echo "✓ lifecycle scenario tests passed"
 else
