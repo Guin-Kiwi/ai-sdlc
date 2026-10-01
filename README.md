@@ -79,4 +79,5 @@ For non-interactive setup, pass the same selection, for example `bash scripts/se
 - `scripts/test.sh` — project test entrypoint run by CI and release;
   `scripts/test-lifecycle.sh` holds scenario tests for the lifecycle checker
 - `.github/` — Copilot instructions and `/ai-sdlc` prompt, CODEOWNERS, PR and
-  use-case issue templates, CI, release, bootstrap-issue and CD workflows
+  use-case issue templates, CI, release, bootstrap-issue and CD workflows,
+  importable rulesets

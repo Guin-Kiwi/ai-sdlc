@@ -27,6 +27,7 @@
     { "path": "CLAUDE.md", "edit": "human-review-required", "note": "Imports AGENTS.md for Claude Code; keep it a one-line import." },
     { "path": ".github/CODEOWNERS", "edit": "human-review-required", "note": "Lists the files above that need owner review; replace the owner at BOOTSTRAP." },
     { "path": ".github/workflows/", "edit": "human-review-required", "note": "CI/CD gates. CI and release run scripts/check-lifecycle.sh and scripts/test.sh." },
+    { "path": ".github/rulesets/", "edit": "human-review-required", "note": "Importable GitHub rulesets (main-team, main-solo, release-tags); not applied automatically, imported once per repository." },
     { "path": "scripts/check-lifecycle.sh", "edit": "agent-maintained", "note": "Lifecycle consistency checks run by CI; extend when artefacts or templates change." },
     { "path": "scripts/check-setup.sh", "edit": "agent-maintained", "note": "Local setup check (skill links, CLAUDE.md, environment); run after setup." }
   ]
