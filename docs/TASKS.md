@@ -7,7 +7,11 @@ STATUS: ready
 
 ## Active objective
 
-State the single most important outcome for the current work session in one or two lines.
+This repository starts as the AI-SDLC template. First objective: define the
+project — complete `docs/PROJECT.md` (purpose, architecture, commands) for
+this specific project. Once it reflects a real project, strip the
+template-only commentary per `skills/ai-sdlc-0-bootstrap` step 5, then replace
+this paragraph with the actual current objective.
 
 ## Current Use Case
 

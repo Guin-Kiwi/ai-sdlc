@@ -173,25 +173,20 @@ Stop and ask the human before proceeding if any of the following occur:
 - the repo instructions conflict with external best practices in a way that affects delivery
 - validation criteria are missing and cannot be inferred safely
 - the task requires permissions or actions that are unavailable
+- an unresolved assumption would change behavior, scope, or architecture if wrong
 
 When stopping, present:
 - what is unclear
 - what options exist
 - your recommended next step
 
+Agents should optimize for reviewability, not autonomy for its own sake.
+
 ## Security and quality expectations
-Use these as standing expectations for all work:
 
-- apply least-privilege thinking
-- avoid hardcoded secrets or tokens
-- validate inputs at boundaries
-- prefer safe defaults and explicit failure modes
-- preserve traceability between requirement, implementation, and validation
-- flag security-sensitive changes for human review
-
-Reference:
-- `docs/STANDARDS.md`
-- `docs/AGENT-GUIDANCE.md`
+See `docs/STANDARDS.md` for the standing security/quality checklist (least
+privilege, no hardcoded secrets, input validation, traceability) and
+`docs/AGENT-GUIDANCE.md` for supplementary practices not already covered above.
 
 ## Evidence expectations by phase
 
@@ -225,29 +220,13 @@ Provide:
 - what remains out of scope
 - recommended next slice
 
-## Human-in-the-loop expectations
-Human review is especially important for:
-- changes to `AGENTS.md`
-- cross-cutting architectural changes
-- security-sensitive decisions
-- scope changes
-- unresolved assumptions that affect behavior
-- any release- or deployment-relevant action
-
-Agents should optimize for reviewability, not autonomy for its own sake.
-
 ## Rules
 
 - Use the language of the current user prompt for all communication and all
   natural-language artifacts. Do not default to the language of earlier
   messages.
 - Update existing artifacts; create only what is missing.
-- Keep artifacts **minimal**.
 - Avoid unnecessary comments in code.
-- Follow **TDD** (tests before code).
-- Respect **Clean Architecture**  
-  domain ← application ← interfaces ← infrastructure
-- Prefer **small vertical slices** (one UC end-to-end).
 - Read the [canonical AI-SDLC documentation](https://docs.aisl.science/learning-and-resources/ai-sdlc)
   when terminology or lifecycle responsibilities are unclear.
 - For standards and supporting rationale, see:

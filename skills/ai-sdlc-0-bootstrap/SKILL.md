@@ -99,6 +99,11 @@ Identify:
 - unused files
 - irrelevant boilerplate
 - mismatching structure
+- template-only meta commentary that no longer applies once the project is
+  established (e.g. `docs/PROJECT.md`'s "Complete this document during
+  BOOTSTRAP" instruction line, README's template setup/"Create a project"
+  steps) — replace with the real project's own content instead of removing
+  the file
 
 Ask the user before removing anything.
 
