@@ -1,4 +1,5 @@
 # Contributing
+<!-- Human review required: changes need a code owner's approval (.github/CODEOWNERS). -->
 
 How people and coding agents work together in this repository. The lifecycle
 itself is defined in `AGENTS.md`; this file covers team workflow.

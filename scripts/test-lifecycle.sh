@@ -141,6 +141,14 @@ cp "$d/docs/adr/ADR-TEMPLATE.md" "$d/docs/adr/ADR-900-first.md"
 cp "$d/docs/adr/ADR-TEMPLATE.md" "$d/docs/adr/ADR-900-second.md"
 expect_fail "duplicate ADR number" "$d" "duplicate ADR number 900"
 
+d=$(make_fixture index-missing-path 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+rm "$d/scripts/sdlc.py"
+expect_fail "INDEX.json lists a review-gated path that is missing" "$d" "docs/INDEX.json references missing path scripts/sdlc.py"
+
+d=$(make_fixture index-missing-template 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+rm "$d/docs/adr/ADR-TEMPLATE.md"
+expect_fail "INDEX.json lists a template that is missing" "$d" "docs/INDEX.json references missing path docs/adr/ADR-TEMPLATE.md"
+
 d=$(make_fixture tiers-present 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
 expect_no_warnings "every skill declares model_tier" "$d"
 

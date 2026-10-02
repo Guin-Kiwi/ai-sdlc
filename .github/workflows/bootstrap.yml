@@ -1,3 +1,4 @@
+# Human review required: changes need a code owner's approval (.github/CODEOWNERS).
 name: Bootstrap issue
 
 # Opens a one-time "Define the project" issue in repositories created from the

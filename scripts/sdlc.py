@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """AI-SDLC helper commands.
 
+Human review required: changes need a code owner's approval (.github/CODEOWNERS).
+This records human evidence: agents must never run it or weaken its checks.
+
   python3 scripts/sdlc.py review   Record a human review of recent work.
 """
 

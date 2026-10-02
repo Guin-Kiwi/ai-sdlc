@@ -71,7 +71,7 @@ For non-interactive setup, pass the same selection, for example `bash scripts/se
 - `AGENTS.md` — lifecycle router and guardrails (`CLAUDE.md` imports it)
 - `CONTRIBUTING.md` — team workflow: change-size ladder, branches, PRs, agent
   git rules, repository setup
-- `docs/INDEX.json` — machine-readable map of phases, skills and edit policy
+- `docs/INDEX.json` — map of phases, skills and review-gated files
 - `docs/PROJECT.md` — project context and commands
 - `docs/TASKS.md` — current lifecycle state
 - `docs/specs/` — executable use-case specifications

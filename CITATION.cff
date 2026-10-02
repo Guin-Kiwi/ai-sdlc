@@ -1,3 +1,4 @@
+# Human review required: changes need a code owner's approval (.github/CODEOWNERS). Describes the template, not a derived project; replace at BOOTSTRAP.
 cff-version: 1.2.0
 message: "If you use AI-SDLC in your work, please cite the archived release."
 title: "The AI-SDLC Template and Method: AI-Assisted Software Development Life Cycle"

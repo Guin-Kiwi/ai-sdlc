@@ -1,37 +1,21 @@
 {
-  "purpose": "Machine-readable map of this repository. Read this before AGENTS.md's longer sections or any full SKILL.md, to avoid loading more context than the current step needs.",
+  "purpose": "Map of lifecycle phases and their skills, plus the files that need a human's review. Each review-gated file and template also says so in its own first lines.",
   "phases": [
-    { "phase": 0, "name": "BOOTSTRAP", "skill": "skills/ai-sdlc-0-bootstrap/", "detail": "skills/ai-sdlc-0-bootstrap/index.json" },
-    { "phase": 1, "name": "SPECIFY", "skill": "skills/ai-sdlc-1-specify/", "detail": "skills/ai-sdlc-1-specify/index.json" },
-    { "phase": 2, "name": "DESIGN", "skill": "skills/ai-sdlc-2-design/", "detail": "skills/ai-sdlc-2-design/index.json" },
-    { "phase": 3, "name": "DEVELOP", "skill": "skills/ai-sdlc-3-develop/", "detail": "skills/ai-sdlc-3-develop/index.json" },
-    { "phase": 4, "name": "VALIDATE", "skill": "skills/ai-sdlc-4-validate/", "detail": "skills/ai-sdlc-4-validate/index.json" },
-    { "phase": 5, "name": "DEPLOY", "skill": "skills/ai-sdlc-5-deploy/", "detail": "skills/ai-sdlc-5-deploy/index.json" }
+    {"phase": 0, "name": "BOOTSTRAP", "skill": "skills/ai-sdlc-0-bootstrap/", "detail": "skills/ai-sdlc-0-bootstrap/index.json"},
+    {"phase": 1, "name": "SPECIFY", "skill": "skills/ai-sdlc-1-specify/", "detail": "skills/ai-sdlc-1-specify/index.json"},
+    {"phase": 2, "name": "DESIGN", "skill": "skills/ai-sdlc-2-design/", "detail": "skills/ai-sdlc-2-design/index.json"},
+    {"phase": 3, "name": "DEVELOP", "skill": "skills/ai-sdlc-3-develop/", "detail": "skills/ai-sdlc-3-develop/index.json"},
+    {"phase": 4, "name": "VALIDATE", "skill": "skills/ai-sdlc-4-validate/", "detail": "skills/ai-sdlc-4-validate/index.json"},
+    {"phase": 5, "name": "DEPLOY", "skill": "skills/ai-sdlc-5-deploy/", "detail": "skills/ai-sdlc-5-deploy/index.json"}
   ],
   "lifecycle_state": "docs/TASKS.md",
   "project_context": "docs/PROJECT.md",
-  "key_files": [
-    { "path": "AGENTS.md", "edit": "human-review-required", "note": "Router. Changes need explicit human approval before use." },
-    { "path": "docs/INDEX.json", "edit": "human-review-required", "note": "This file. Keep in sync with AGENTS.md and the skills it maps; treat edits like router edits." },
-    { "path": "CONTRIBUTING.md", "edit": "human-review-required", "note": "Team workflow for humans (change-size ladder, branches, PRs, model choice, checks, ruleset setup). Agents do not need to read it; their rules are in AGENTS.md." },
-    { "path": "docs/TASKS.md", "edit": "agent-maintained", "note": "Update PHASE/STATUS every session; set done only after verifying output." },
-    { "path": "docs/PROJECT.md", "edit": "collaborative", "note": "Fill in and keep current during BOOTSTRAP and later phases; needs user input, not invention." },
-    { "path": "docs/specs/UC-TEMPLATE.md", "edit": "do-not-fill", "note": "Copy to docs/specs/UC-[NNN]-[NAME].md; never fill in the template itself." },
-    { "path": "docs/adr/ADR-TEMPLATE.md", "edit": "do-not-fill", "note": "Copy to docs/adr/ADR-[NNN]-[short-title].md; never fill in the template itself." },
-    { "path": "docs/adr/", "edit": "agent-maintained", "note": "One ADR per significant DESIGN decision (ADR-NNN-short-title.md); never delete, mark superseded instead." },
-    { "path": "docs/STANDARDS.md", "edit": "agent-maintained", "note": "Secondary reference (NIST SSDF, OWASP ASVS). Lower priority than TASKS.md/PROJECT.md/active UC." },
-    { "path": "docs/AGENT-GUIDANCE.md", "edit": "agent-maintained", "note": "Supplementary practices not already covered in AGENTS.md; keep it from re-duplicating the router." },
-    { "path": "docs/future/", "edit": "agent-maintained", "note": "Non-binding roadmap notes; nothing here is adopted until it has an ADR." },
-    { "path": "skills/", "edit": "agent-maintained", "note": "Phase guidance. If a phase's steps change, update its index.json to match." },
-    { "path": "CITATION.cff", "edit": "human-review-required", "note": "Describes the template, not a derived project; revisit at BOOTSTRAP. Confirm with user before changing." },
-    { "path": ".zenodo.json", "edit": "human-review-required", "note": "Describes the template, not a derived project; revisit at BOOTSTRAP. Confirm with user before changing." },
-    { "path": "CLAUDE.md", "edit": "human-review-required", "note": "Imports AGENTS.md for Claude Code; keep it a one-line import." },
-    { "path": ".github/CODEOWNERS", "edit": "human-review-required", "note": "Lists the files above that need owner review; replace the owner at BOOTSTRAP." },
-    { "path": ".github/workflows/", "edit": "human-review-required", "note": "CI/CD gates. CI and release run scripts/check-lifecycle.sh and scripts/test.sh." },
-    { "path": ".github/rulesets/", "edit": "human-review-required", "note": "Importable GitHub rulesets (main-team, main-solo, release-tags); not applied automatically, imported once per repository." },
-    { "path": "scripts/check-lifecycle.sh", "edit": "agent-maintained", "note": "Lifecycle consistency checks run by CI; extend when artefacts or templates change." },
-    { "path": "scripts/pr_advisory.py", "edit": "agent-maintained", "note": "Non-blocking PR advisory (model tier, Fast Track scope); run by the CI advisory job; tests in scripts/tests/." },
-    { "path": "scripts/sdlc.py", "edit": "human-review-required", "note": "Human review report (`review`). Records human evidence; agents must never run it or weaken its checks." },
-    { "path": "scripts/check-setup.sh", "edit": "agent-maintained", "note": "Local setup check (skill links, CLAUDE.md, environment); run after setup." }
-  ]
+  "review_gated": {
+    "rule": "Edit only with a human's explicit approval; changes need a code owner's review (.github/CODEOWNERS).",
+    "paths": ["AGENTS.md", "docs/INDEX.json", "CONTRIBUTING.md", "CITATION.cff", ".zenodo.json", "CLAUDE.md", ".github/CODEOWNERS", ".github/workflows/", ".github/rulesets/", "scripts/sdlc.py"]
+  },
+  "templates": {
+    "rule": "Copy to a new numbered file; never fill in the template itself.",
+    "paths": ["docs/specs/UC-TEMPLATE.md", "docs/adr/ADR-TEMPLATE.md"]
+  }
 }
