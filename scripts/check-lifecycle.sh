@@ -77,6 +77,11 @@ if [[ "$phase" =~ ^[4-5]$ ]] && [ ! -f scripts/test.sh ]; then
   fail "scripts/test.sh is required from VALIDATE onward"
 fi
 
+grep -qF 'UC-[NNN]-[NAME]' docs/specs/UC-TEMPLATE.md \
+  || fail "docs/specs/UC-TEMPLATE.md looks filled in (placeholder UC-[NNN]-[NAME] missing); restore it and copy it to a new UC file instead"
+grep -qF 'ADR-[NNN]-[short-title]' docs/adr/ADR-TEMPLATE.md \
+  || fail "docs/adr/ADR-TEMPLATE.md looks filled in (placeholder ADR-[NNN]-[short-title] missing); restore it and copy it to a new ADR file instead"
+
 headings=$(grep '^## ' docs/specs/UC-TEMPLATE.md)
 for uc in docs/specs/UC-*.md; do
   [ "$uc" = docs/specs/UC-TEMPLATE.md ] && continue
