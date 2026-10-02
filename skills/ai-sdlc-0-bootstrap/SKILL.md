@@ -118,6 +118,9 @@ Identify:
 - template identity: README badges (AI-SDLC, DOI, arXiv), `CITATION.cff`,
   `.zenodo.json` and the owner in `.github/CODEOWNERS` describe the template,
   not the derived project — replace or remove them for the project
+- `README.md`: rewrite it for the project: what the app does and how to run
+  it first, then a short "How this project was developed (AI-SDLC)" section
+  linking `CONTRIBUTING.md`, `docs/specs/` and `docs/adr/`
 - `LICENSE`: keep section 1 (CC BY 4.0 requires the template attribution to
   stay); ask the team which licence their own code uses and fill in section 2
 

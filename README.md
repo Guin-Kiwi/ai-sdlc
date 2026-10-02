@@ -66,6 +66,18 @@ agent; setup does not install or configure the agent itself.
 
 For non-interactive setup, pass the same selection, for example `bash scripts/setup-skills.sh copilot`. `CLAUDE.md` (which imports `AGENTS.md`) is included in the repository; the `claude` and `all` selections recreate it if missing. Skill links are per-machine and ignored by git.
 
+## What you build vs. what guides you
+
+| | Paths | Licence |
+|---|---|---|
+| **Your project** (what is being built) | `src/app/` (domain, application, interfaces, infrastructure), `tests/`, `docs/PROJECT.md`, `docs/TASKS.md`, `docs/specs/`, `docs/adr/`, `README.md` | Your team's choice (`LICENSE` section 2) |
+| **The AI-SDLC process** (how it is built) | `AGENTS.md`, `CONTRIBUTING.md`, `skills/`, `scripts/`, `.github/`, `environments/`, `docs/INDEX.json`, `docs/STANDARDS.md`, `docs/AGENT-GUIDANCE.md` | CC BY 4.0 (`LICENSE` section 1) |
+
+Both stay in the repository: the process files are your evidence of TDD,
+CI/CD and supervised agent use. Deployable artifacts contain only the app
+(`.dockerignore` excludes the process files). Credit for the template:
+Andreas Martin and Sandro Schwander (FHNW), CC BY 4.0, see `LICENSE`.
+
 ## Repository artefacts
 
 - `AGENTS.md` — lifecycle router and guardrails (`CLAUDE.md` imports it)
