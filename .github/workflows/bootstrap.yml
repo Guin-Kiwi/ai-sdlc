@@ -44,6 +44,7 @@ jobs:
           - [ ] Ask your agent to start BOOTSTRAP: Copilot Chat `/ai-sdlc` → `bootstrap`; Claude Code `/ai-sdlc-0-bootstrap`
           - [ ] Complete `docs/PROJECT.md` (purpose, architecture, structure, commands, dependencies)
           - [ ] Replace template identity: README badges, `CITATION.cff`, `.zenodo.json`, owner in `.github/CODEOWNERS`
+          - [ ] Choose your code's licence in `LICENSE` section 2 (keep section 1: the template's CC BY 4.0 attribution)
           - [ ] Import rulesets from `.github/rulesets/` (Settings → Rules → Rulesets → New ruleset → Import a ruleset): `main-team.json` for teams or `main-solo.json` alone, plus `release-tags.json`
           - [ ] Enable secret scanning with push protection and Dependabot alerts (Settings → Code security)
           - [ ] Set `docs/TASKS.md` to PHASE 0 / STATUS done, then close this issue

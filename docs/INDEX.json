@@ -12,7 +12,7 @@
   "project_context": "docs/PROJECT.md",
   "review_gated": {
     "rule": "Edit only with a human's explicit approval; changes need a code owner's review (.github/CODEOWNERS).",
-    "paths": ["AGENTS.md", "docs/INDEX.json", "CONTRIBUTING.md", "CITATION.cff", ".zenodo.json", "CLAUDE.md", ".github/CODEOWNERS", ".github/workflows/", ".github/rulesets/", "scripts/sdlc.py"]
+    "paths": ["AGENTS.md", "LICENSE", "docs/INDEX.json", "CONTRIBUTING.md", "CITATION.cff", ".zenodo.json", "CLAUDE.md", ".github/CODEOWNERS", ".github/workflows/", ".github/rulesets/", "scripts/sdlc.py"]
   },
   "templates": {
     "rule": "Copy to a new numbered file; never fill in the template itself.",

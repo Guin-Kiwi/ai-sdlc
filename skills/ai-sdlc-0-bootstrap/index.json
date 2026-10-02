@@ -13,7 +13,8 @@
     "Ensure docs/PROJECT.md exists and is updated: purpose, architecture, structure, commands, dependencies.",
     "Identify unused files or mismatched structure; ask the user before removing anything.",
     "Once the project is established, strip template-only meta commentary (docs/PROJECT.md's BOOTSTRAP instruction line, README's template setup steps) and replace with the real project's own content; ask the user first.",
-    "Replace or remove template identity (README badges, CITATION.cff, .zenodo.json, owner in .github/CODEOWNERS), which describes the template rather than the derived project; ask the user first."
+    "Replace or remove template identity (README badges, CITATION.cff, .zenodo.json, owner in .github/CODEOWNERS), which describes the template rather than the derived project; ask the user first.",
+    "Keep LICENSE section 1 (CC BY 4.0 attribution is required); ask which licence the team's own code uses and fill in section 2."
   ],
   "evidence": ["clarified objective", "constraints", "assumptions", "smallest proposed slice", "open questions"],
   "output": "Repository aligned with intended system.",
