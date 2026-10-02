@@ -25,6 +25,15 @@ Record important framework, data-store and integration decisions here.
 Document the meaningful source and test directories once they exist. Reuse the
 existing repository structure where it is compatible with the selected stack.
 
+## Resources
+
+Where non-code material lives; link reference documents here so agents find them.
+
+- Runtime files (templates, static files, seed data, migrations): inside `src/app/`, in the layer that uses them
+- Test data: `tests/fixtures/`
+- Reference material (brief, domain notes, glossary, diagrams): `docs/reference/` — list each file below
+- Secrets and real config values: never in the repository; `.env` locally
+
 ## Commands
 
 Document the commands for the selected stack:

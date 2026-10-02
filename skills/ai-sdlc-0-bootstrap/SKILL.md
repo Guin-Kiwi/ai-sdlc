@@ -98,6 +98,7 @@ Content:
 - purpose
 - architecture
 - structure
+- resources (where non-code material lives; link reference documents)
 - commands
 - dependencies
 

@@ -42,7 +42,7 @@ jobs:
 
           - [ ] Confirm setup: `bash scripts/check-setup.sh` (Codespaces runs it automatically)
           - [ ] Ask your agent to start BOOTSTRAP: Copilot Chat `/ai-sdlc` → `bootstrap`; Claude Code `/ai-sdlc-0-bootstrap`
-          - [ ] Complete `docs/PROJECT.md` (purpose, architecture, structure, commands, dependencies)
+          - [ ] Complete `docs/PROJECT.md` (purpose, architecture, structure, resources, commands, dependencies)
           - [ ] Replace template identity: README badges, `CITATION.cff`, `.zenodo.json`, owner in `.github/CODEOWNERS`
           - [ ] Choose your code's licence in `LICENSE` section 2 (keep section 1: the template's CC BY 4.0 attribution)
           - [ ] Import rulesets from `.github/rulesets/` (Settings → Rules → Rulesets → New ruleset → Import a ruleset): `main-team.json` for teams or `main-solo.json` alone; `release-tags.json` only if you publish releases
