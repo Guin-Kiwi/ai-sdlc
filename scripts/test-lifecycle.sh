@@ -149,6 +149,14 @@ d=$(make_fixture index-missing-template 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACE
 rm "$d/docs/adr/ADR-TEMPLATE.md"
 expect_fail "INDEX.json lists a template that is missing" "$d" "docs/INDEX.json references missing path docs/adr/ADR-TEMPLATE.md"
 
+d=$(make_fixture uc-template-filled 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+sed -i 's/UC-\[NNN\]-\[NAME\]/UC-007-LOGIN/' "$d/docs/specs/UC-TEMPLATE.md"
+expect_fail "filled-in use-case template" "$d" "docs/specs/UC-TEMPLATE.md looks filled in"
+
+d=$(make_fixture adr-template-filled 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+sed -i 's/ADR-\[NNN\]-\[short-title\]/ADR-004-database/' "$d/docs/adr/ADR-TEMPLATE.md"
+expect_fail "filled-in ADR template" "$d" "docs/adr/ADR-TEMPLATE.md looks filled in"
+
 d=$(make_fixture tiers-present 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
 expect_no_warnings "every skill declares model_tier" "$d"
 
