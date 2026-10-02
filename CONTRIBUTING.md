@@ -36,6 +36,39 @@ Borderline? If a teammate would need to agree on *what* it should do before
 you build it, it is a use case. If they only need to check *how* you did it,
 it is Fast Track.
 
+## Working with an agent
+
+Agent rules live in `AGENTS.md`, which every agent loads. This file is
+written for humans. Your side of the loop:
+
+1. **Start a phase**: in the chat view type `/ai-sdlc` (Copilot) or the
+   phase skill, such as `/ai-sdlc-1-specify` (Claude Code).
+2. **Pick the model** for the task (see "Choosing a model").
+3. **Read the diff** before the work is committed: open the **Source Control**
+   view and click each changed file.
+4. **Run the checks** (see "Checks and what they mean").
+5. **Record your review** when the work is finished (see "Human review report").
+
+Guides: [Copilot Chat](https://code.visualstudio.com/docs/chat/chat-overview),
+[Claude Code in VS Code](https://code.claude.com/docs/en/vs-code),
+[stage and commit](https://code.visualstudio.com/docs/sourcecontrol/staging-commits).
+
+## Choosing a model
+
+The human picks the model; each skill's `index.json` gives a `model_tier`
+hint. Switch models with the model picker under the chat box (Copilot) or
+`/model` (Claude Code).
+
+| Work | Tier |
+|---|---|
+| BOOTSTRAP, SPECIFY, DESIGN, ADRs: judgement and trade-offs | large |
+| DEVELOP against a failing test, VALIDATE, DEPLOY | standard |
+| Fast Track, single commits, docs, small refactors | small |
+
+Start one tier lower than you think. If the same test still fails after two
+fix attempts, or the agent asks questions the spec already answers, move up a
+tier. Move down when a task turns out to be Fast Track.
+
 ## Use cases, branches and pull requests
 
 - The agent creates the branch when SPECIFY starts: `uc-NNN-<short-name>`
@@ -60,57 +93,6 @@ Guides: [create an issue](https://docs.github.com/en/issues/tracking-your-work-w
 [branches in VS Code](https://code.visualstudio.com/docs/sourcecontrol/branches-worktrees),
 [create a pull request](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request),
 [issues and pull requests from inside VS Code](https://code.visualstudio.com/docs/sourcecontrol/github).
-
-## Working with an agent
-
-Agent rules live in `AGENTS.md`, which every agent loads. This file is
-written for humans. Your side of the loop:
-
-1. **Start a phase**: in the chat view type `/ai-sdlc` (Copilot) or the
-   phase skill, such as `/ai-sdlc-1-specify` (Claude Code).
-2. **Pick the model** for the task (see "Choosing a model").
-3. **Read the diff** before the work is committed: open the **Source Control**
-   view and click each changed file.
-4. **Run the checks** (see "Checks and what they mean").
-5. **Record your review** when the work is finished (see "Human review report").
-
-Guides: [Copilot Chat](https://code.visualstudio.com/docs/chat/chat-overview),
-[Claude Code in VS Code](https://code.claude.com/docs/en/vs-code),
-[stage and commit](https://code.visualstudio.com/docs/sourcecontrol/staging-commits).
-
-## Commits
-
-- Keep the TDD steps as separate commits (failing test, then implementation,
-  then refactor). PRs are **rebase-merged** so this history stays on `main`
-  as evidence.
-- Use conventional prefixes: `feat:`, `fix:`, `test:`, `refactor:`, `docs:`,
-  `ci:`, `chore:`, and `review:` for recorded human reviews.
-- Commits written by a coding agent end with two trailers, which the PR
-  advisory reads:
-
-  ```
-  Agent-Model: <model name>
-  Agent-Tier: small | standard | large
-  ```
-
-  Human-written commits may add `Agent-Tier: none`; a commit without the
-  trailer is assumed to be human-written.
-
-## Choosing a model
-
-The human picks the model; each skill's `index.json` gives a `model_tier`
-hint. Switch models with the model picker under the chat box (Copilot) or
-`/model` (Claude Code).
-
-| Work | Tier |
-|---|---|
-| BOOTSTRAP, SPECIFY, DESIGN, ADRs: judgement and trade-offs | large |
-| DEVELOP against a failing test, VALIDATE, DEPLOY | standard |
-| Fast Track, single commits, docs, small refactors | small |
-
-Start one tier lower than you think. If the same test still fails after two
-fix attempts, or the agent asks questions the spec already answers, move up a
-tier. Move down when a task turns out to be Fast Track.
 
 ## Checks and what they mean
 
@@ -170,6 +152,24 @@ only settles the advisory; the teammate's approval is still required.
 
 Guides: [review a pull request](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/reviewing-proposed-changes-in-a-pull-request),
 [merge a pull request](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-a-pull-request).
+
+## Commits
+
+- Keep the TDD steps as separate commits (failing test, then implementation,
+  then refactor). PRs are **rebase-merged** so this history stays on `main`
+  as evidence.
+- Use conventional prefixes: `feat:`, `fix:`, `test:`, `refactor:`, `docs:`,
+  `ci:`, `chore:`, and `review:` for recorded human reviews.
+- Commits written by a coding agent end with two trailers, which the PR
+  advisory reads:
+
+  ```
+  Agent-Model: <model name>
+  Agent-Tier: small | standard | large
+  ```
+
+  Human-written commits may add `Agent-Tier: none`; a commit without the
+  trailer is assumed to be human-written.
 
 ## Repository setup
 
