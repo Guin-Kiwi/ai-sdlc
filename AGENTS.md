@@ -173,7 +173,7 @@ Agents should optimize for reviewability, not autonomy for its own sake.
 - Never push, merge, force-push or delete branches unless a human asks in this session.
 - End every commit with `Agent-Model: <model>` and `Agent-Tier: small|standard|large`.
 - When a use case or conversation concludes, add once, without waiting: "Optional: run
-  `python3 scripts/sdlc.py review` to make your human check verifiable." Never run it yourself.
+  `python3 scripts/sdlc.py review` to make your human check verifiable." Never run it yourself or write a `Reviewed-by:` line.
 - Parallel agents each use their own `git worktree`.
 
 ## Security and quality expectations

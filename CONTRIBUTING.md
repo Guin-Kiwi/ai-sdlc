@@ -73,8 +73,8 @@ tier. Move down when a task turns out to be Fast Track.
 
 | Severity | Effect | Used for |
 |---|---|---|
-| Block | CI fails; the PR cannot merge | Real breakage: missing or inconsistent lifecycle files, duplicate UC/ADR numbers, failing tests |
-| Warn | Yellow annotation on the PR; merging is allowed | A small-tier commit changed use cases, ADRs, `AGENTS.md`, `CONTRIBUTING.md`, workflows or rulesets; a Fast Track branch exceeded its scope; a skill lacks `model_tier` |
+| Block | CI fails; the PR cannot merge | Real breakage: missing or inconsistent lifecycle files, a filled-in UC or ADR template, duplicate UC/ADR numbers, failing tests |
+| Warn | Yellow annotation on the PR; merging is allowed | A small-tier commit changed use cases, ADRs, `AGENTS.md`, `CONTRIBUTING.md`, workflows or rulesets; any agent commit changed a review-gated file (`docs/INDEX.json`); a Fast Track branch exceeded its scope; a skill lacks `model_tier` |
 | Info | Shown in the CI summary only | An agent commit without `Agent-Tier`; a large tier on a Fast Track branch |
 
 Checks run on GitHub: the `structure` job blocks, the `advisory` job only
@@ -93,6 +93,10 @@ criteria, what you checked yourself, what the PR reviewer should look at) and
 records your answers as a `review:` commit ending in `Reviewed-by:`. Specific
 answers to "what did you check yourself" are the evidence; "looked fine" is
 not. Answering "partly" is fine and tells the PR reviewer where to look.
+
+A review recorded after a flagged commit marks it as human-reviewed: the PR
+advisory then shows "human-reviewed by <name>" instead of a warning. This
+only settles the advisory; the teammate's approval is still required.
 
 ## Review and merge
 
