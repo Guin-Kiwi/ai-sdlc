@@ -10,6 +10,7 @@ authors:
   - family-names: Schwander
     given-names: Sandro
     orcid: "https://orcid.org/0009-0006-9708-3800"
+license: CC-BY-4.0
 version: 1.0.0
 date-released: 2026-09-18
 repository-code: "https://github.com/AIaSDev/ai-sdlc-template"

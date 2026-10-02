@@ -1,5 +1,5 @@
 {
-  "purpose": "Map of lifecycle phases and their skills, plus the files that need a human's review. Each review-gated file and template also says so in its own first lines.",
+  "purpose": "Map of lifecycle phases and their skills, what is being built (project) versus the AI-SDLC tooling (process), and the files that need a human's review. Each review-gated file and template also says so in its own first lines.",
   "phases": [
     {"phase": 0, "name": "BOOTSTRAP", "skill": "skills/ai-sdlc-0-bootstrap/", "detail": "skills/ai-sdlc-0-bootstrap/index.json"},
     {"phase": 1, "name": "SPECIFY", "skill": "skills/ai-sdlc-1-specify/", "detail": "skills/ai-sdlc-1-specify/index.json"},
@@ -10,9 +10,11 @@
   ],
   "lifecycle_state": "docs/TASKS.md",
   "project_context": "docs/PROJECT.md",
+  "project": ["src/", "tests/", "docs/PROJECT.md", "docs/TASKS.md", "docs/specs/", "docs/adr/", "README.md"],
+  "process": ["AGENTS.md", "CLAUDE.md", "CONTRIBUTING.md", "skills/", "scripts/", "docs/INDEX.json", "docs/STANDARDS.md", "docs/AGENT-GUIDANCE.md", ".github/", "environments/"],
   "review_gated": {
     "rule": "Edit only with a human's explicit approval; changes need a code owner's review (.github/CODEOWNERS).",
-    "paths": ["AGENTS.md", "docs/INDEX.json", "CONTRIBUTING.md", "CITATION.cff", ".zenodo.json", "CLAUDE.md", ".github/CODEOWNERS", ".github/workflows/", ".github/rulesets/", "scripts/sdlc.py"]
+    "paths": ["AGENTS.md", "LICENSE", "docs/INDEX.json", "CONTRIBUTING.md", "CITATION.cff", ".zenodo.json", "CLAUDE.md", ".github/CODEOWNERS", ".github/workflows/", ".github/rulesets/", "scripts/sdlc.py"]
   },
   "templates": {
     "rule": "Copy to a new numbered file; never fill in the template itself.",

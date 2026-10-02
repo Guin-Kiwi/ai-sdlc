@@ -35,6 +35,8 @@ it is Fast Track.
 - ADR numbers: take the next unused number on `main`. CI rejects duplicates.
 - Change shared files (`AGENTS.md`, `docs/PROJECT.md`, `docs/INDEX.json`,
   `.github/`) in their own small PR, not mixed into feature work.
+- App code, including app scripts and CLIs, lives under `src/app/` and its
+  tests under `tests/`. `scripts/` is AI-SDLC tooling; do not put app code there.
 
 ## Commits
 

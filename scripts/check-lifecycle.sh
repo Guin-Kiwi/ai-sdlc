@@ -13,7 +13,7 @@ warn() {
   if [ -n "${GITHUB_ACTIONS:-}" ]; then echo "::warning::$1"; fi
 }
 
-for f in AGENTS.md docs/INDEX.json docs/TASKS.md docs/PROJECT.md \
+for f in AGENTS.md LICENSE docs/INDEX.json docs/TASKS.md docs/PROJECT.md \
          docs/STANDARDS.md docs/AGENT-GUIDANCE.md \
          docs/specs/UC-TEMPLATE.md docs/adr/ADR-TEMPLATE.md \
          .github/copilot-instructions.md; do
@@ -35,7 +35,7 @@ except Exception as e:
     print(f"✗ docs/INDEX.json is not valid JSON: {e}")
     sys.exit(1)
 paths = [p["skill"] for p in index["phases"]] + [p["detail"] for p in index["phases"]]
-paths += index["review_gated"]["paths"] + index["templates"]["paths"]
+paths += index["review_gated"]["paths"] + index["templates"]["paths"] + index["project"] + index["process"]
 missing = [p for p in paths if not os.path.exists(p)]
 for p in missing:
     print(f"✗ docs/INDEX.json references missing path {p}")
@@ -46,6 +46,10 @@ phase=$(sed -n 's/^PHASE: *//p' docs/TASKS.md | head -1)
 status=$(sed -n 's/^STATUS: *//p' docs/TASKS.md | head -1)
 [[ "$phase" =~ ^[0-5]$ ]] || fail "docs/TASKS.md PHASE must be 0-5 (found '$phase')"
 [[ "$status" =~ ^(ready|in-progress|done|blocked)$ ]] || fail "docs/TASKS.md STATUS must be ready, in-progress, done or blocked (found '$status')"
+
+if [[ "$phase" =~ ^[1-5]$ ]] && grep -qF '[CHOOSE AT BOOTSTRAP]' LICENSE 2>/dev/null; then
+  warn "LICENSE: the project licence is not chosen yet (section 2); choose one with the team"
+fi
 
 if [[ "$phase" =~ ^[1-5]$ ]] && grep -q 'TBD' docs/PROJECT.md; then
   fail "docs/PROJECT.md still contains TBD after BOOTSTRAP (PHASE $phase)"

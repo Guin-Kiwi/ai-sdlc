@@ -38,6 +38,8 @@ If no workflow exists:
 
 ## Rules
 
+- Deploy only the app (`src/`, runtime dependencies, `LICENSE`); process files stay in the repository.
+
 - Prefer **verifying existing workflows**.
 - Do not overwrite workflows without confirmation.
 - Never store secrets in the repository.

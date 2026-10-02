@@ -58,8 +58,10 @@ If `docs/PROJECT.md` declares a container artifact, check:
 
 Dockerfile
 
-Verify the container builds and starts the application. If no container or
-other build artifact is declared, record the artifact check as not applicable.
+Verify the container builds and starts the application, and that the image
+contains only the app (`src/`, runtime dependencies, `LICENSE`); the root
+`.dockerignore` already excludes the process files. If no container or other
+build artifact is declared, record the artifact check as not applicable.
 
 ---
 
@@ -75,7 +77,8 @@ CI and release run `scripts/test.sh`. Create or update it so it runs:
 - integration tests
 
 using the commands documented in `docs/PROJECT.md`. Do not add a separate test
-workflow.
+workflow. `scripts/test.sh` ships running `tests/` with `unittest`; once
+`pytest` is installed in CI, switch that line to `python3 -m pytest`.
 
 ---
 

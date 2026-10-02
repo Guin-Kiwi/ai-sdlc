@@ -46,6 +46,7 @@ DEPLOY → SPECIFY (feedback)
 - Durable rules + ADR links → `AGENTS.md`, with human approval/review.
 - Update related files together; preserve decision history and reconcile parallel changes.
 - `CONTRIBUTING.md` is the team workflow for humans; agents do not need to read it.
+- App code goes in `src/app/`, its tests in `tests/`; `scripts/` and `skills/` are process tooling (`docs/INDEX.json` "project" vs "process").
 
 ## Context Load Order
 
