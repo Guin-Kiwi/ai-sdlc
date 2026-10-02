@@ -77,8 +77,8 @@ CI and release run `scripts/test.sh`. Create or update it so it runs:
 - integration tests
 
 using the commands documented in `docs/PROJECT.md`. Do not add a separate test
-workflow. `scripts/test.sh` ships running `tests/` with `unittest`; once
-`pytest` is installed in CI, switch that line to `python3 -m pytest`.
+workflow. `scripts/test.sh` ships running `tests/` with `pytest`, and CI installs
+the project's requirements first.
 
 ---
 

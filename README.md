@@ -59,9 +59,9 @@ and warnings, the human review report, and merging. Each step says where to
 click and links to an official guide.
 
 CI runs `scripts/check-lifecycle.sh` (are the AI-SDLC artefacts present and
-consistent?) and `scripts/test.sh`, the project's test entrypoint. It ships
-running only the lifecycle checks; extend it with your project's tests during
-VALIDATE. `.github/workflows/cd.yml` is an inactive template, configured
+consistent?) and `scripts/test.sh`, the project's test entrypoint: it runs
+every test under `tests/` with pytest from the first commit, so each TDD step
+shows in CI. `.github/workflows/cd.yml` is an inactive template, configured
 during DEPLOY.
 
 New to Git or VS Code? Try [GitHub Hello World](https://docs.github.com/en/get-started/using-github/hello-world),

@@ -17,6 +17,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: ${{ hashFiles('.python-version') != '' && '.python-version' || 'environments/python/.python-version' }}
+          cache: pip
+          cache-dependency-path: "**/requirements.txt"
+
+      - name: Install dependencies
+        run: |
+          req=requirements.txt
+          [ -f "$req" ] || req=environments/python/requirements.txt
+          python -m pip install -r "$req"
+
       - name: Check AI-SDLC lifecycle artefacts
         run: bash scripts/check-lifecycle.sh
 

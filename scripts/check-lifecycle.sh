@@ -62,8 +62,10 @@ fi
 
 current_use_case=$(awk '/^## Current Use Case/{inside=1; next} inside && NF {gsub(/`/, ""); print; exit} /^## /{inside=0}' docs/TASKS.md)
 if [[ "$phase" =~ ^[1-5]$ ]]; then
-  if [[ -z "$current_use_case" || "$current_use_case" == *'UC-[NNN]-[NAME]'* ]]; then
-    fail "docs/TASKS.md must name a concrete current use case after BOOTSTRAP"
+  if [[ -z "$current_use_case" || "$current_use_case" == *'UC-[NNN]-[NAME]'* || "$current_use_case" =~ ^Fast\ Track:[[:space:]]*$ ]]; then
+    fail "docs/TASKS.md must name a concrete current use case (or 'Fast Track: <description>') after BOOTSTRAP"
+  elif [[ "$current_use_case" =~ ^Fast\ Track: ]]; then
+    :
   elif [ ! -f "$current_use_case" ]; then
     fail "docs/TASKS.md current use case does not exist: $current_use_case"
   fi
