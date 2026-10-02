@@ -111,7 +111,93 @@ class AdviseTests(unittest.TestCase):
         self.assertIn("smaller tier", findings[0][1])
 
 
-class GitIntegrationTests(unittest.TestCase):
+GATED = ["AGENTS.md", "CLAUDE.md", ".github/workflows/"]
+REVIEW = "review: human review of 1 commits\n\nAgent-Tier: none\nReviewed-by: Ayla <ayla@example.com>\n"
+
+
+class ReviewGatedTests(unittest.TestCase):
+    def test_agent_change_to_review_gated_file_warns(self):
+        findings = pa.advise(
+            [commit("docs: rules\n\nAgent-Tier: standard\n", ["AGENTS.md"])],
+            [("M", "AGENTS.md")], "uc-042-login", gated=GATED,
+        )
+        self.assertEqual([level for level, _ in findings], ["warning"])
+        self.assertIn("review-gated", findings[0][1])
+        self.assertIn("not yet human-reviewed", findings[0][1])
+        self.assertIn("sdlc.py review", findings[0][1])
+
+    def test_gated_directory_prefix_matches(self):
+        findings = pa.advise(
+            [commit("ci: x\n\nAgent-Tier: large\n", [".github/workflows/ci.yml"])],
+            [("M", ".github/workflows/ci.yml")], "uc-042-login", gated=GATED,
+        )
+        self.assertEqual([level for level, _ in findings], ["warning"])
+
+    def test_human_change_to_review_gated_file_is_not_flagged(self):
+        findings = pa.advise(
+            [commit("docs: rules\n\nAgent-Tier: none\n", ["AGENTS.md"])],
+            [("M", "AGENTS.md")], "uc-042-login", gated=GATED,
+        )
+        self.assertEqual(findings, [])
+
+    def test_later_review_turns_gated_warning_into_notice(self):
+        findings = pa.advise(
+            [commit("docs: rules\n\nAgent-Tier: standard\n", ["AGENTS.md"], sha="aaaaaaa1"),
+             commit(REVIEW, [], sha="bbbbbbb2")],
+            [("M", "AGENTS.md")], "uc-042-login", gated=GATED,
+        )
+        self.assertEqual([level for level, _ in findings], ["notice"])
+        self.assertIn("human-reviewed by Ayla in bbbbbbb", findings[0][1])
+
+    def test_earlier_review_does_not_cover_later_change(self):
+        findings = pa.advise(
+            [commit(REVIEW, [], sha="bbbbbbb2"),
+             commit("docs: rules\n\nAgent-Tier: standard\n", ["AGENTS.md"], sha="aaaaaaa1")],
+            [("M", "AGENTS.md")], "uc-042-login", gated=GATED,
+        )
+        self.assertEqual([level for level, _ in findings], ["warning"])
+
+    def test_later_review_also_covers_small_tier_warning(self):
+        findings = pa.advise(
+            [commit("docs: spec\n\nAgent-Tier: small\n", ["docs/specs/UC-042-LOGIN.md"]),
+             commit(REVIEW, [], sha="ccccccc3")],
+            [("A", "docs/specs/UC-042-LOGIN.md")], "uc-042-login", gated=GATED,
+        )
+        self.assertEqual([level for level, _ in findings], ["notice"])
+        self.assertIn("human-reviewed by Ayla", findings[0][1])
+
+    def test_small_tier_on_gated_file_outside_high_judgement_warns_once(self):
+        findings = pa.advise(
+            [commit("chore: x\n\nAgent-Tier: small\n", ["CLAUDE.md"])],
+            [("M", "CLAUDE.md")], "uc-042-login", gated=GATED,
+        )
+        self.assertEqual([level for level, _ in findings], ["warning"])
+
+    def test_loads_gated_paths_from_index(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            os.makedirs(os.path.join(tmp, "docs"))
+            write(os.path.join(tmp, "docs", "INDEX.json"),
+                  '{"review_gated": {"rule": "r", "paths": ["AGENTS.md", ".github/rulesets/"]}}')
+            self.assertEqual(pa.load_gated(tmp), ["AGENTS.md", ".github/rulesets/"])
+            self.assertEqual(pa.load_gated(os.path.join(tmp, "missing")), [])
+
+
+class GitOrderTests(unittest.TestCase):
+    def test_commits_are_oldest_first(self):
+        with tempfile.TemporaryDirectory() as repo:
+            def git(*args):
+                return subprocess.run(["git", "-C", repo, *args], check=True,
+                                      capture_output=True, text=True).stdout.strip()
+            git("init", "-q", "-b", "main")
+            git("config", "user.email", "t@example.com")
+            git("config", "user.name", "T")
+            git("commit", "-q", "--allow-empty", "-m", "chore: base")
+            base = git("rev-parse", "HEAD")
+            git("commit", "-q", "--allow-empty", "-m", "first")
+            git("commit", "-q", "--allow-empty", "-m", "second")
+            commits, _ = pa.collect(base, "HEAD", cwd=repo)
+        self.assertEqual([c["message"].strip() for c in commits], ["first", "second"])
+
     def test_collects_commits_and_files_from_git(self):
         with tempfile.TemporaryDirectory() as repo:
             def git(*args):
