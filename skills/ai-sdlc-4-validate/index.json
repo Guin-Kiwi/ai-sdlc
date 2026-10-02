@@ -19,5 +19,5 @@
   ],
   "evidence": ["summary of what changed", "what was validated", "what remains out of scope", "recommended next slice"],
   "output": "Unit and integration tests pass; repository verified.",
-  "record_in": "docs/TASKS.md"
+  "record_in": "docs/TASKS.md; actual evidence also in the active UC file's Evidence section, so it stays with the use case"
 }

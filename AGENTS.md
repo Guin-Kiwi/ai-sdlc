@@ -170,7 +170,7 @@ Agents should optimize for reviewability, not autonomy for its own sake.
 
 ## Git and review
 
-- Work only on the current use case's or Fast Track's branch; never commit to `main`.
+- Work on the current use case's or Fast Track's branch; commit to `main` only when a human allows it in this session (e.g. a solo repository).
 - Never push, merge, force-push or delete branches unless a human asks in this session.
 - End every commit with `Agent-Model: <model>` and `Agent-Tier: small|standard|large`.
 - When a use case or conversation concludes, add once, without waiting: "Optional: run

@@ -120,4 +120,7 @@ Unit and integration tests pass.
 
 Repository verified.
 
-Record phase 4 and status in `docs/TASKS.md` per `AGENTS.md`.
+Write the actual evidence (checks run, results, links) into the active UC
+file's "Evidence" section, so it stays with the use case after
+`docs/TASKS.md` moves on. Record phase 4 and status in `docs/TASKS.md` per
+`AGENTS.md`.

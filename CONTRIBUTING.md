@@ -145,6 +145,10 @@ only settles the advisory; the teammate's approval is still required.
 - The reviewer approves under **Files changed → Review changes → Approve**.
 - The author merges after approval, using **Rebase and merge** (choose it
   from the arrow next to the merge button).
+- **`docs/TASKS.md` conflicts** are expected when two branches run in
+  parallel: each branch records its own use case there. To resolve, keep
+  `main`'s version, then put back your branch's PHASE, STATUS and current use
+  case. You can ask your agent to do this.
 - If the `advisory` job warns, the reviewer looks harder at the flagged files,
   ideally with a second review by a larger model (Copilot code review on the
   PR, or an agent's code-review command), and leaves a one-to-three line
@@ -180,9 +184,12 @@ ruleset**, from `.github/rulesets/`
 
 - `main-team.json` for team repositories: PRs with one approval, code-owner
   review, up-to-date branches, passing CI, rebase-merge only, no force pushes.
+  Updating a branch after approval reruns CI but keeps the approval.
 - `main-solo.json` for single-person repositories: no force pushes or
-  deletion of `main`.
-- `release-tags.json`: only admins create, move or delete `v*` tags.
+  deletion of `main`. Working directly on `main` is allowed; tell your agent
+  when it may commit there.
+- Optional, only if you publish releases: `release-tags.json` lets only
+  admins create, move or delete `v*` tags.
 
 Rulesets on private repositories need GitHub Pro on the owner's account
 (included in the GitHub Student Developer Pack). Also enable secret scanning

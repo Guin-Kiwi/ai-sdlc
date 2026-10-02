@@ -44,9 +44,6 @@ State the next concrete action that should happen if work resumes later.
 ## Backlog
 
 - docs/specs/UC-[NNN]-[NAME].md
-- docs/future/SKILL-DESIGN-SOURCES.md — roadmap note on candidate standards
-  for future skill/contract design (MCP, JSON Schema, W3C PROV, and
-  conditional standards); not yet adopted, no ADR.
 
 ## Working agreement
 

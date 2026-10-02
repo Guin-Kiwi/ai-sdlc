@@ -63,7 +63,8 @@ Integration
 E2E
 
 ### Evidence
-What artefact should show this use case is satisfied?
+What artefact should show this use case is satisfied? At VALIDATE, replace
+this with the actual results: checks run, outcomes, links.
 
 ## Open questions / assumptions
 
