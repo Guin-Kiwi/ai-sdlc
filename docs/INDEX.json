@@ -30,6 +30,8 @@
     { "path": ".github/workflows/", "edit": "human-review-required", "note": "CI/CD gates. CI and release run scripts/check-lifecycle.sh and scripts/test.sh." },
     { "path": ".github/rulesets/", "edit": "human-review-required", "note": "Importable GitHub rulesets (main-team, main-solo, release-tags); not applied automatically, imported once per repository." },
     { "path": "scripts/check-lifecycle.sh", "edit": "agent-maintained", "note": "Lifecycle consistency checks run by CI; extend when artefacts or templates change." },
+    { "path": "scripts/pr_advisory.py", "edit": "agent-maintained", "note": "Non-blocking PR advisory (model tier, Fast Track scope); run by the CI advisory job; tests in scripts/tests/." },
+    { "path": "scripts/sdlc.py", "edit": "human-review-required", "note": "Human review report (`review`). Records human evidence; agents must never run it or weaken its checks." },
     { "path": "scripts/check-setup.sh", "edit": "agent-maintained", "note": "Local setup check (skill links, CLAUDE.md, environment); run after setup." }
   ]
 }

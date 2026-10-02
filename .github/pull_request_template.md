@@ -19,3 +19,4 @@
 
 - [ ] `docs/TASKS.md` reflects the phase and status
 - [ ] Changes to `AGENTS.md`, `docs/INDEX.json` or workflows were reviewed by a human
+- [ ] Optional: human review recorded (`python3 scripts/sdlc.py review`)

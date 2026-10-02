@@ -41,9 +41,57 @@ it is Fast Track.
   then refactor). PRs are **rebase-merged** so this history stays on `main`
   as evidence.
 - Use conventional prefixes: `feat:`, `fix:`, `test:`, `refactor:`, `docs:`,
-  `ci:`, `chore:`.
-- Commits written by a coding agent carry a `Co-Authored-By:` trailer naming
-  the agent.
+  `ci:`, `chore:`, and `review:` for recorded human reviews.
+- Commits written by a coding agent end with two trailers, which the PR
+  advisory reads:
+
+  ```
+  Agent-Model: <model name>
+  Agent-Tier: small | standard | large
+  ```
+
+  Human-written commits may add `Agent-Tier: none`; a commit without the
+  trailer is assumed to be human-written.
+
+## Choosing a model
+
+The human picks the model; each skill's `index.json` gives a `model_tier`
+hint.
+
+| Work | Tier |
+|---|---|
+| BOOTSTRAP, SPECIFY, DESIGN, ADRs: judgement and trade-offs | large |
+| DEVELOP against a failing test, VALIDATE, DEPLOY | standard |
+| Fast Track, single commits, docs, small refactors | small |
+
+Start one tier lower than you think. If the same test still fails after two
+fix attempts, or the agent asks questions the spec already answers, move up a
+tier. Move down when a task turns out to be Fast Track.
+
+## Checks and what they mean
+
+| Severity | Effect | Used for |
+|---|---|---|
+| Block | CI fails; the PR cannot merge | Real breakage: missing or inconsistent lifecycle files, duplicate UC/ADR numbers, failing tests |
+| Warn | Yellow annotation on the PR; merging is allowed | A small-tier commit changed use cases, ADRs, `AGENTS.md`, `CONTRIBUTING.md`, workflows or rulesets; a Fast Track branch exceeded its scope; a skill lacks `model_tier` |
+| Info | Shown in the CI summary only | An agent commit without `Agent-Tier`; a large tier on a Fast Track branch |
+
+Checks run on GitHub: the `structure` job blocks, the `advisory` job only
+informs. Run the same blocking checks locally with the VS Code task
+**AI-SDLC: Run checks** or `bash scripts/test.sh`.
+
+## Human review report
+
+When a set of agent loops or a conversation has concluded and you want your
+check on record, run the VS Code task **AI-SDLC: Human review report** or
+`python3 scripts/sdlc.py review`. It is optional and never blocks anyone.
+
+It summarises the commits since your last report, asks five questions (what
+changed, whether you read every file, whether the tests check the acceptance
+criteria, what you checked yourself, what the PR reviewer should look at) and
+records your answers as a `review:` commit ending in `Reviewed-by:`. Specific
+answers to "what did you check yourself" are the evidence; "looked fine" is
+not. Answering "partly" is fine and tells the PR reviewer where to look.
 
 ## Review and merge
 
@@ -51,6 +99,10 @@ it is Fast Track.
   passing CI, and the branch must be up to date with `main`.
 - Files listed in `.github/CODEOWNERS` also need a code owner's review.
 - The author merges after approval, using **Rebase and merge**.
+- If the `advisory` job warns, the reviewer looks harder at the flagged files,
+  ideally with a second review by a larger model (Copilot code review on the
+  PR, or an agent's code-review command), and leaves a one-to-three line
+  "what I checked" comment with the approval.
 
 ## Coding agents
 
@@ -59,6 +111,12 @@ it is Fast Track.
 - Never push, merge, force-push or delete branches unless a human asks for it
   in the current session.
 - Run `bash scripts/test.sh` before proposing a PR and report the result.
+- End every commit with the `Agent-Model:` and `Agent-Tier:` trailers.
+- Stop and ask when the current skill's `model_tier` is above yours, or when
+  the same test still fails after two fix attempts; suggest a larger model.
+- When a use case or conversation concludes, add one line, once, without
+  waiting: "Optional: run `python3 scripts/sdlc.py review` to make your human
+  check verifiable in the project history." Never run it yourself.
 - To run two agents at once, give each its own worktree:
   `git worktree add ../<repo>-uc-042 uc-042-<short-name>`.
 

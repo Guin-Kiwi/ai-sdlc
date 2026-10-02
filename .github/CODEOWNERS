@@ -9,3 +9,4 @@
 /.github/CODEOWNERS   @Guin-Kiwi
 /.github/workflows/   @Guin-Kiwi
 /.github/rulesets/    @Guin-Kiwi
+/scripts/sdlc.py      @Guin-Kiwi

@@ -35,7 +35,13 @@ the AI-SDLC artefacts present and consistent?) and `scripts/test.sh`, the
 project's test entrypoint. It ships running only the lifecycle checks; extend
 it with your project's tests during VALIDATE. `.github/CODEOWNERS` marks the
 files that need human review; turn on "Require review from Code Owners" in
-branch protection to enforce it. `.github/workflows/cd.yml` is an inactive template,
+branch protection to enforce it.
+
+Only real breakage blocks a merge; anything that just deserves a closer look
+appears as a warning on the PR. You choose the model for each task: harder,
+judgement-heavy phases need a larger model, small fixes a smaller one. When
+you have finished a piece of agent work, the optional human review report
+records what you checked. `CONTRIBUTING.md` explains all three. `.github/workflows/cd.yml` is an inactive template,
 configured during DEPLOY.
 
 ## Agent setup
@@ -81,7 +87,10 @@ For non-interactive setup, pass the same selection, for example `bash scripts/se
 - `scripts/check-setup.sh` — confirms local setup worked
 - `scripts/check-lifecycle.sh` — artefact consistency checks run by CI
 - `scripts/test.sh` — project test entrypoint run by CI and release;
-  `scripts/test-lifecycle.sh` holds scenario tests for the lifecycle checker
+  `scripts/test-lifecycle.sh` and `scripts/tests/` test the template's own checks
+- `scripts/pr_advisory.py` — non-blocking PR warnings (model tier, Fast Track scope)
+- `scripts/sdlc.py review` — optional human review report, recorded in history
+- `.vscode/tasks.json` — "AI-SDLC: Run checks" and "AI-SDLC: Human review report"
 - `.github/` — Copilot instructions and `/ai-sdlc` prompt, CODEOWNERS, PR and
   use-case issue templates, CI, release, bootstrap-issue and CD workflows,
   importable rulesets

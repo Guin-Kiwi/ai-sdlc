@@ -51,6 +51,7 @@ DEPLOY → SPECIFY (feedback)
 - Durable rules + ADR links → `AGENTS.md`, with human approval/review.
 - Update related files together; preserve decision history and reconcile parallel changes.
 - Team workflow, change-size ladder, branches, PRs and agent git rules → `CONTRIBUTING.md`.
+- When a use case or conversation concludes, remind the human once, without waiting, that `python3 scripts/sdlc.py review` records their review. Never run it yourself.
 
 ## Context Load Order
 
@@ -158,6 +159,7 @@ A step is only done when all applicable items are true:
 - relevant requirements are referenced
 - assumptions are called out
 - tests/checks/review evidence are included where applicable
+- `bash scripts/test.sh` passes; commits end with `Agent-Model:` and `Agent-Tier:` trailers
 - no unresolved ambiguity is hidden
 - risky actions were escalated when required
 - the repository remains coherent for the next agent or human
@@ -176,6 +178,7 @@ Stop and ask the human before proceeding if any of the following occur:
 - validation criteria are missing and cannot be inferred safely
 - the task requires permissions or actions that are unavailable
 - an unresolved assumption would change behavior, scope, or architecture if wrong
+- the current skill's `model_tier` is above yours, or the same test still fails after two fix attempts
 
 When stopping, present:
 - what is unclear
