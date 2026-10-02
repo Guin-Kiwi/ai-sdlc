@@ -69,6 +69,25 @@ expect_pass() {
   fi
 }
 
+expect_warn() {
+  local label="$1" dir="$2" message="$3"
+  if ! bash "$dir/scripts/check-lifecycle.sh" > "$dir/check.out" 2>&1; then
+    fail "$label should pass with a warning, but failed"
+    sed 's/^/    /' "$dir/check.out"
+  elif ! grep -qF "⚠ $message" "$dir/check.out"; then
+    fail "$label should warn (expected: $message)"
+  fi
+}
+
+expect_no_warnings() {
+  local label="$1" dir="$2"
+  bash "$dir/scripts/check-lifecycle.sh" > "$dir/check.out" 2>&1
+  if grep -q '^⚠' "$dir/check.out"; then
+    fail "$label should have no warnings"
+    sed 's/^/    /' "$dir/check.out"
+  fi
+}
+
 expect_fail() {
   local label="$1" dir="$2" message="$3"
   if bash "$dir/scripts/check-lifecycle.sh" > "$dir/check.out" 2>&1; then
@@ -121,6 +140,17 @@ d=$(make_fixture duplicate-adr 1 in-progress "$UC_OK" "$ACCEPT_OK" "$EVIDENCE_OK
 cp "$d/docs/adr/ADR-TEMPLATE.md" "$d/docs/adr/ADR-900-first.md"
 cp "$d/docs/adr/ADR-TEMPLATE.md" "$d/docs/adr/ADR-900-second.md"
 expect_fail "duplicate ADR number" "$d" "duplicate ADR number 900"
+
+d=$(make_fixture tiers-present 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+expect_no_warnings "every skill declares model_tier" "$d"
+
+d=$(make_fixture tier-missing 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+sed -i '/"model_tier"/d' "$d/skills/ai-sdlc-3-develop/index.json"
+expect_warn "skill without model_tier" "$d" "skills/ai-sdlc-3-develop/index.json has no valid model_tier"
+
+d=$(make_fixture tier-invalid 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+sed -i 's/"model_tier": "[a-z]*"/"model_tier": "huge"/' "$d/skills/ai-sdlc-3-develop/index.json"
+expect_warn "skill with invalid model_tier" "$d" "skills/ai-sdlc-3-develop/index.json has no valid model_tier"
 
 if [ "$failures" -eq 0 ]; then
   echo "✓ lifecycle scenario tests passed"
