@@ -51,8 +51,9 @@ tests/e2e
 
 Rules:
 
-- create only missing directories; do not add directory-marker files such as
-  `__init__.py` unless required by the selected framework
+- the template ships this skeleton with `__init__.py` files (needed for test
+  discovery) and `tests/unit/test_architecture.py`, which enforces the
+  dependency rule; create only what is missing
 - reuse existing structure if compatible
 - do not duplicate or restructure unnecessarily
 
