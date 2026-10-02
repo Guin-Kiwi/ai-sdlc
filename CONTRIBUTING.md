@@ -25,8 +25,9 @@ it is Fast Track.
 
 ## Use cases, branches and pull requests
 
-- Open a **Use case** issue. Its number is the use-case number: issue #42 →
-  `docs/specs/UC-042-<NAME>.md` on branch `uc-042-<short-name>`.
+- Open a **Use case** issue (**Issues → New issue → Use case**). Its number
+  is the use-case number: issue #42 → `docs/specs/UC-042-<NAME>.md` on
+  branch `uc-042-<short-name>`.
 - Fast Track branches: `fix-<short-name>` or `docs-<short-name>`.
 - One use case per branch and per PR. The PR body says `Closes #42`.
 - On a branch, `docs/TASKS.md` describes that branch's use case only. Before
@@ -37,6 +38,28 @@ it is Fast Track.
   `.github/`) in their own small PR, not mixed into feature work.
 - App code, including app scripts and CLIs, lives under `src/app/` and its
   tests under `tests/`. `scripts/` is AI-SDLC tooling; do not put app code there.
+
+Guides: [create an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue),
+[branches in VS Code](https://code.visualstudio.com/docs/sourcecontrol/branches-worktrees),
+[create a pull request](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request),
+[issues and pull requests from inside VS Code](https://code.visualstudio.com/docs/sourcecontrol/github).
+
+## Working with an agent
+
+Agent rules live in `AGENTS.md`, which every agent loads. This file is
+written for humans. Your side of the loop:
+
+1. **Start a phase**: in the chat view type `/ai-sdlc` (Copilot) or the
+   phase skill, such as `/ai-sdlc-1-specify` (Claude Code).
+2. **Pick the model** for the task (see "Choosing a model").
+3. **Read the diff** before the work is committed: open the **Source Control**
+   view and click each changed file.
+4. **Run the checks** (see "Checks and what they mean").
+5. **Record your review** when the work is finished (see "Human review report").
+
+Guides: [Copilot Chat](https://code.visualstudio.com/docs/chat/chat-overview),
+[Claude Code in VS Code](https://code.claude.com/docs/en/vs-code),
+[stage and commit](https://code.visualstudio.com/docs/sourcecontrol/staging-commits).
 
 ## Commits
 
@@ -59,7 +82,8 @@ it is Fast Track.
 ## Choosing a model
 
 The human picks the model; each skill's `index.json` gives a `model_tier`
-hint.
+hint. Switch models with the model picker under the chat box (Copilot) or
+`/model` (Claude Code).
 
 | Work | Tier |
 |---|---|
@@ -80,14 +104,28 @@ tier. Move down when a task turns out to be Fast Track.
 | Info | Shown in the CI summary only | An agent commit without `Agent-Tier`; a large tier on a Fast Track branch |
 
 Checks run on GitHub: the `structure` job blocks, the `advisory` job only
-informs. Run the same blocking checks locally with the VS Code task
-**AI-SDLC: Run checks** or `bash scripts/test.sh`.
+informs.
+
+- **Run the checks yourself** before you push: **Terminal → Run Task… →
+  AI-SDLC: Run checks**, or `bash scripts/test.sh`. Lines starting with `✗`
+  block; lines starting with `⚠` are warnings.
+- **Find the warnings on a PR.** The `advisory` check always shows a green
+  tick, even when it has warnings, so open it to look: **Checks** tab →
+  **advisory**. The run summary lists warnings under **Annotations** and in
+  the **PR advisory** section.
+- **Find out why `structure` failed**: click **Details** next to the red ✗,
+  expand the failed step and look for the line starting with `✗`. Run the
+  checks locally to reproduce it.
+
+Guides: [status checks](https://docs.github.com/en/pull-requests/reference/status-checks),
+[workflow run logs](https://docs.github.com/en/actions/how-tos/monitor-workflows/use-workflow-run-logs),
+[VS Code tasks](https://code.visualstudio.com/docs/debugtest/tasks).
 
 ## Human review report
 
 When a set of agent loops or a conversation has concluded and you want your
-check on record, run the VS Code task **AI-SDLC: Human review report** or
-`python3 scripts/sdlc.py review`. It is optional and never blocks anyone.
+check on record, run **Terminal → Run Task… → AI-SDLC: Human review report**
+(or `python3 scripts/sdlc.py review`) and answer in the terminal. It is optional and never blocks anyone.
 
 It summarises the commits since your last report, asks five questions (what
 changed, whether you read every file, whether the tests check the acceptance
@@ -105,22 +143,23 @@ only settles the advisory; the teammate's approval is still required.
 - Every change to `main` goes through a PR with one teammate's approval and
   passing CI, and the branch must be up to date with `main`.
 - Files listed in `.github/CODEOWNERS` also need a code owner's review.
-- The author merges after approval, using **Rebase and merge**.
+- The reviewer approves under **Files changed → Review changes → Approve**.
+- The author merges after approval, using **Rebase and merge** (choose it
+  from the arrow next to the merge button).
 - If the `advisory` job warns, the reviewer looks harder at the flagged files,
   ideally with a second review by a larger model (Copilot code review on the
   PR, or an agent's code-review command), and leaves a one-to-three line
   "what I checked" comment with the approval.
 
-## Coding agents
-
-Agent rules live in `AGENTS.md` → "Git and review", which every agent loads.
-This file is written for humans.
+Guides: [review a pull request](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/reviewing-proposed-changes-in-a-pull-request),
+[merge a pull request](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-a-pull-request).
 
 ## Repository setup
 
 Rulesets are not copied when a repository is created from the template.
 Import them once under **Settings → Rules → Rulesets → New ruleset → Import a
-ruleset**, from `.github/rulesets/`:
+ruleset**, from `.github/rulesets/`
+([guide](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository)):
 
 - `main-team.json` for team repositories: PRs with one approval, code-owner
   review, up-to-date branches, passing CI, rebase-merge only, no force pushes.

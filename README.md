@@ -30,19 +30,22 @@ application-specific code.
    need no issue; `CONTRIBUTING.md` explains which level a change belongs to
    and how branches, PRs and reviews work in a team.
 
-The included GitHub Actions workflows run `scripts/check-lifecycle.sh` (are
-the AI-SDLC artefacts present and consistent?) and `scripts/test.sh`, the
-project's test entrypoint. It ships running only the lifecycle checks; extend
-it with your project's tests during VALIDATE. `.github/CODEOWNERS` marks the
-files that need human review; turn on "Require review from Code Owners" in
-branch protection to enforce it.
+## Day to day
 
-Only real breakage blocks a merge; anything that just deserves a closer look
-appears as a warning on the PR. You choose the model for each task: harder,
-judgement-heavy phases need a larger model, small fixes a smaller one. When
-you have finished a piece of agent work, the optional human review report
-records what you checked. `CONTRIBUTING.md` explains all three. `.github/workflows/cd.yml` is an inactive template,
-configured during DEPLOY.
+[`CONTRIBUTING.md`](CONTRIBUTING.md) is the working guide: how big a change
+is, branches and pull requests, choosing a model, where to find check results
+and warnings, the human review report, and merging. Each step says where to
+click and links to an official guide.
+
+CI runs `scripts/check-lifecycle.sh` (are the AI-SDLC artefacts present and
+consistent?) and `scripts/test.sh`, the project's test entrypoint. It ships
+running only the lifecycle checks; extend it with your project's tests during
+VALIDATE. `.github/workflows/cd.yml` is an inactive template, configured
+during DEPLOY.
+
+New to Git or VS Code? Try [GitHub Hello World](https://docs.github.com/en/get-started/using-github/hello-world),
+the hands-on [GitHub Skills](https://skills.github.com/) courses and
+[Source control in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview).
 
 ## Agent setup
 

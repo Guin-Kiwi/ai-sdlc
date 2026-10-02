@@ -19,4 +19,5 @@
 
 - [ ] `docs/TASKS.md` reflects the phase and status
 - [ ] Changes to `AGENTS.md`, `docs/INDEX.json` or workflows were reviewed by a human
+- [ ] Reviewer: opened **Checks → advisory** and read its warnings (it stays green even when it warns)
 - [ ] Optional: human review recorded (`python3 scripts/sdlc.py review`)
