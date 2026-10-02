@@ -1,5 +1,5 @@
 # UC-[NNN]-[NAME]
-<!-- Template: copy to docs/specs/UC-<issue>-<NAME>.md and delete this comment in the copy; never fill in this file. -->
+<!-- Template: copy to docs/specs/UC-NNN-<NAME>.md and delete this comment in the copy; never fill in this file. -->
 
 ## Goal
 State the use case outcome in one or two lines.

@@ -4,20 +4,33 @@
 How people and coding agents work together in this repository. The lifecycle
 itself is defined in `AGENTS.md`; this file covers team workflow.
 
+## Quick start
+
+1. **Start**: in the chat view type `/ai-sdlc` → `specify` (Copilot) or
+   `/ai-sdlc-1-specify` (Claude Code) and describe the feature or fix. The
+   agent creates the branch and the spec.
+2. **Build**: continue with the next phases in the chat. Read each change in
+   **Source Control** before it is committed.
+3. **Share**: publish the branch, open a pull request on GitHub, read the
+   `advisory` warnings, get one approval, then **Rebase and merge**.
+4. **Finish**: back in VS Code, switch to `main` and select **Sync** to pull.
+
+The sections below explain each step when you need more.
+
 ## How big is this change?
 
-Pick the lowest level that fits. Only use cases need an issue.
+Pick the lowest level that fits.
 
-| Level | What qualifies | Record it in | Issue? |
-|---|---|---|---|
-| 1. Commit | A step inside already-scoped work: a test, an implementation step, a refactor | The commit, on the use case's branch | No |
-| 2. Fast Track | A small correction within existing behaviour: a bug fix (start with a failing test), wording, config, docs | One line in the PR description or `docs/TASKS.md` | No |
-| 3. Use case | Anything that adds or changes observable behaviour, i.e. something an acceptance criterion would describe | Issue → `docs/specs/UC-<issue>-<NAME>.md` → branch → PR | Yes |
-| 4. ADR | A consequential decision that is hard to reverse or spans use cases: data store, auth approach, framework, a break in the layer rules | `docs/adr/ADR-NNN-<title>.md`, Proposed until a human accepts it | Usually inside a use case's PR |
+| Level | What qualifies | Record it in |
+|---|---|---|
+| 1. Commit | A step inside already-scoped work: a test, an implementation step, a refactor | The commit, on the use case's branch |
+| 2. Fast Track | A small correction within existing behaviour: a bug fix (start with a failing test), wording, config, docs | One line in the PR description or `docs/TASKS.md` |
+| 3. Use case | Anything that adds or changes observable behaviour, i.e. something an acceptance criterion would describe | `docs/specs/UC-NNN-<NAME>.md` → branch → PR |
+| 4. ADR | A consequential decision that is hard to reverse or spans use cases: data store, auth approach, framework, a break in the layer rules | `docs/adr/ADR-NNN-<title>.md`, Proposed until a human accepts it, usually inside a use case's PR |
 
 Fast Track never covers new features, API or data changes, security,
-dependencies or architecture. If a Fast Track grows into any of these, stop,
-open a use-case issue and continue in the regular flow.
+dependencies or architecture. If a Fast Track grows into any of these, stop
+and continue as a use case.
 
 Borderline? If a teammate would need to agree on *what* it should do before
 you build it, it is a use case. If they only need to check *how* you did it,
@@ -25,11 +38,15 @@ it is Fast Track.
 
 ## Use cases, branches and pull requests
 
-- Open a **Use case** issue (**Issues → New issue → Use case**). Its number
-  is the use-case number: issue #42 → `docs/specs/UC-042-<NAME>.md` on
-  branch `uc-042-<short-name>`.
-- Fast Track branches: `fix-<short-name>` or `docs-<short-name>`.
-- One use case per branch and per PR. The PR body says `Closes #42`.
+- The agent creates the branch when SPECIFY starts: `uc-NNN-<short-name>`
+  for a use case, `fix-<short-name>` or `docs-<short-name>` for Fast Track.
+- Issues are optional. If you want the team to see planned work on GitHub,
+  open a **Use case** issue first (**Issues → New issue → Use case**; your
+  agent can draft the text) and give the agent its number: issue #42 →
+  `docs/specs/UC-042-<NAME>.md`. Without an issue, the agent takes the next
+  free number. Pick one way as a team so numbers do not clash.
+- One use case per branch and per PR. With an issue, the PR body says
+  `Closes #42`.
 - On a branch, `docs/TASKS.md` describes that branch's use case only. Before
   merging, update the branch from `main` and reconcile `docs/TASKS.md` and
   any UC or ADR numbers with what `main` already has.

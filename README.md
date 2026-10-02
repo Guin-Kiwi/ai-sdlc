@@ -25,10 +25,10 @@ application-specific code.
    BOOTSTRAP completes `docs/PROJECT.md`, then proposes removal or replacement
    of this template's own commentary, badges and citation files. The agent
    asks for confirmation before removing or replacing template identity.
-4. For each feature, open a **Use case** issue and ask your agent to start
-   SPECIFY from it. Progress is recorded in `docs/TASKS.md`. Smaller changes
-   need no issue; `CONTRIBUTING.md` explains which level a change belongs to
-   and how branches, PRs and reviews work in a team.
+4. For each feature or fix, ask your agent to start SPECIFY. It creates the
+   branch and the spec; progress is recorded in `docs/TASKS.md`. A **Use
+   case** issue is optional. `CONTRIBUTING.md` starts with a quick start and
+   explains how branches, PRs and reviews work in a team.
 
 ## Day to day
 

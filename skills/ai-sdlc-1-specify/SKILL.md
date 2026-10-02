@@ -8,7 +8,9 @@ description: Create or update a minimal use case specification.
 ## Fast Track
 
 Use the existing UC or task entry per `AGENTS.md`; no new UC required.
-Record acceptance and planned checks, then phase 1. Skip the full UC steps below.
+If on `main`, create and switch to a branch `fix-<short-name>` or
+`docs-<short-name>` first. Record acceptance and planned checks, then phase 1.
+Skip the full UC steps below.
 
 ## Goal
 
@@ -30,7 +32,8 @@ docs/specs/UC-[NNN]-[NAME].md
 
 Rules:
 
-- NNN = sequential number (001, 002, …)
+- NNN = the GitHub issue number if the user gives one (issue #42 → 042),
+  otherwise the next sequential number (001, 002, …)
 - NAME = short uppercase identifier
 - words separated with `-`
 
@@ -39,6 +42,14 @@ Determine the next number by scanning:
 docs/specs/
 
 If a UC for the feature already exists → **update it instead of creating a new one**.
+
+---
+
+## Branch
+
+If on `main`, create and switch to `uc-NNN-<short-name>` (lowercase, same
+NNN as the UC file) before writing anything. On an existing use-case branch,
+stay on it.
 
 ---
 
