@@ -2,22 +2,6 @@
   "phase": 4,
   "name": "ai-sdlc-4-validate",
   "model_tier": "standard",
-  "goal": "Verify that the repository is release-ready. Focus on checking existing artifacts, not writing new ones.",
-  "source_of_truth": ["docs/TASKS.md", "docs/PROJECT.md"],
-  "fast_track": "Run planned checks; record results, omitted checks with reasons, and phase 4. Skip the release-readiness checklist; do not claim full release readiness. Required CI/review still apply.",
-  "steps": [
-    { "step": "run local tests", "detail": "Run the project-specific unit and integration test commands from docs/PROJECT.md; verify both pass." },
-    { "step": "verify e2e tests", "detail": "Check tests/e2e/; extend existing tests if needed; create only if none exist." },
-    { "step": "verify Dockerfile", "detail": "Check Dockerfile builds and starts the application; create only if missing." },
-    { "step": "verify CI", "detail": "CI and release run scripts/test.sh when it exists; create or update it to run the unit and integration test commands from docs/PROJECT.md. Do not add a separate test workflow." },
-    { "step": "verify release workflow", "detail": "Check .github/workflows/release.yml builds the container, runs e2e tests, publishes the artifact; create only if missing." }
-  ],
-  "rules": [
-    "Prefer verifying and extending existing artifacts.",
-    "Create files only if they do not exist.",
-    "Avoid duplicate workflows."
-  ],
-  "evidence": ["summary of what changed", "what was validated", "what remains out of scope", "recommended next slice"],
-  "output": "Unit and integration tests pass; repository verified.",
-  "record_in": "docs/TASKS.md; actual evidence also in the active UC file's Evidence section, so it stays with the use case"
+  "goal": "Verify that the repository is ready for its declared release path, checking existing artifacts.",
+  "instructions": "SKILL.md"
 }

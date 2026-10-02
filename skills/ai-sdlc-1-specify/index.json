@@ -3,25 +3,5 @@
   "name": "ai-sdlc-1-specify",
   "model_tier": "large",
   "goal": "Create or update a minimal use case specification.",
-  "required_input": ["user story or feature description"],
-  "ask_user_if_unclear": true,
-  "fast_track": "Use the existing UC or task entry per AGENTS.md; no new UC required. If on main, first create a branch fix-<short-name> or docs-<short-name>. Record acceptance and planned checks, then phase 1.",
-  "use_case_file": {
-    "path": "docs/specs/UC-[NNN]-[NAME].md",
-    "numbering": "NNN = the GitHub issue number if given (issue #42 -> 042), otherwise sequential (001, 002, ...): scan docs/specs/ for the next number",
-    "naming": "NAME = short uppercase identifier, words separated with -",
-    "template": "docs/specs/UC-TEMPLATE.md",
-    "update_existing_first": true
-  },
-  "branch": "If on main, create and switch to uc-NNN-<short-name> (lowercase, same NNN as the UC file) before writing anything; on an existing use-case branch, stay on it.",
-  "sections_to_fill": ["Goal", "Business value", "Scope (in / out)", "Actors", "Preconditions", "Trigger", "Main flow", "Alternate / edge flows", "Errors / failure cases", "Acceptance criteria", "Security / trust-boundary notes", "Validation plan", "Open questions / assumptions", "Notes for implementation"],
-  "inapplicable_sections": "write \"none\"",
-  "rules": [
-    "Prefer updating existing UC files over creating new ones.",
-    "Do not invent functionality.",
-    "Do not generate code or tests in this phase."
-  ],
-  "evidence": ["acceptance criteria", "boundaries", "interfaces or components affected", "risks / tradeoffs", "validation approach"],
-  "output": "UC specification created or updated.",
-  "record_in": "docs/TASKS.md"
+  "instructions": "SKILL.md"
 }

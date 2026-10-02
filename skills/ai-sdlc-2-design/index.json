@@ -3,30 +3,5 @@
   "name": "ai-sdlc-2-design",
   "model_tier": "large",
   "goal": "Identify the minimal architecture components required for the current use case. Do not generate implementation details.",
-  "required_input": {
-    "current_use_case": "docs/specs/UC-[NNN]-[NAME].md",
-    "architecture_reference": "docs/PROJECT.md"
-  },
-  "ask_user_if_missing": "current use case",
-  "fast_track": "Confirm existing architecture in the task entry; skip full DESIGN.",
-  "decisions": {
-    "significant_choices": "docs/adr/ADR-NNN-short-title.md (unused number)",
-    "template": "docs/adr/ADR-TEMPLATE.md",
-    "adr_contents": ["status", "context", "alternatives", "decision", "consequences"],
-    "on_human_acceptance": "update docs/PROJECT.md and propose durable rules in AGENTS.md",
-    "superseded_adrs": "preserve, never delete; review related changes together"
-  },
-  "actions": [
-    "Read the use case.",
-    "Determine required components across domain, application, interfaces, infrastructure (e.g. domain entity, use case service, repository interface, persistence adapter, API endpoint).",
-    "Ensure docs/PROJECT.md architecture is sufficient; update only if necessary, prefer extending over creating."
-  ],
-  "rules": [
-    "Do not implement code.",
-    "Do not generate tests.",
-    "Keep architecture descriptions minimal."
-  ],
-  "evidence": ["acceptance criteria", "boundaries", "interfaces or components affected", "risks / tradeoffs", "validation approach"],
-  "output": "Architecture verified or minimally updated.",
-  "record_in": "docs/TASKS.md"
+  "instructions": "SKILL.md"
 }

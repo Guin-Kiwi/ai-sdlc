@@ -3,22 +3,5 @@
   "name": "ai-sdlc-3-develop",
   "model_tier": "standard",
   "goal": "Implement the current use case using strict Test-Driven Development.",
-  "source_of_truth": ["docs/TASKS.md", "docs/specs/UC-[NNN]-[NAME].md", "docs/PROJECT.md"],
-  "fast_track": "Replace the full test sequence with a regression test before the fix. Documentation-only changes need no code tests. Use the UC/task entry; record actual results and phase 3.",
-  "test_derivation": {
-    "acceptance": "integration tests -> tests/integration",
-    "domain_rules": "unit tests -> tests/unit",
-    "use_case_logic": "unit tests -> tests/unit",
-    "prefer_extending_existing_files": true
-  },
-  "order": ["integration tests", "unit tests", "implementation"],
-  "cycle": "RED -> GREEN -> REFACTOR",
-  "commands": "Run the project-specific unit test command documented in docs/PROJECT.md.",
-  "rules": [
-    "Tests before code, no exceptions.",
-    "Ask the user if requirements are unclear."
-  ],
-  "evidence": ["tests added/updated first when applicable", "minimal implementation", "impacted files", "validation results"],
-  "output": "Implementation complete; unit tests pass.",
-  "record_in": "docs/TASKS.md"
+  "instructions": "SKILL.md"
 }

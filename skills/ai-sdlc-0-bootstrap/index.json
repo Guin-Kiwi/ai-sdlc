@@ -3,20 +3,5 @@
   "name": "ai-sdlc-0-bootstrap",
   "model_tier": "large",
   "goal": "Align the repository with the intended system and prepare it for AI-SDLC.",
-  "required_input": ["system/app purpose", "framework"],
-  "ask_user_if_unclear": true,
-  "actions": [
-    "Inspect existing structure (src/, tests/), dependency files, existing code and tests.",
-    "Align Clean Architecture dirs (src/app/domain|application|interfaces|infrastructure, tests/unit|integration|e2e); create only what's missing, reuse what's compatible.",
-    "Check for a dependency manifest (requirements.txt | pyproject.toml); reuse if present, create minimal only if missing.",
-    "Default stack profile is Python + FastAPI (devcontainer image, environments/python/, scripts/setup-python.sh, .gitignore Python block). Keep it, adjust requirements.txt to the chosen framework, commit the copied root files. A non-Python project is outside the template's scope (ADR-000); stop and ask the user.",
-    "Ensure docs/PROJECT.md exists and is updated: purpose, architecture, structure, commands, dependencies.",
-    "Identify unused files or mismatched structure; ask the user before removing anything.",
-    "Once the project is established, strip template-only meta commentary (docs/PROJECT.md's BOOTSTRAP instruction line, README's template setup steps) and replace with the real project's own content; ask the user first.",
-    "Replace or remove template identity (README badges, CITATION.cff, .zenodo.json, owner in .github/CODEOWNERS) and docs/future/ (template roadmap notes), which describe the template rather than the derived project; ask the user first.",
-    "Keep LICENSE section 1 (CC BY 4.0 attribution is required); ask which licence the team's own code uses and fill in section 2."
-  ],
-  "evidence": ["clarified objective", "constraints", "assumptions", "smallest proposed slice", "open questions"],
-  "output": "Repository aligned with intended system.",
-  "record_in": "docs/TASKS.md"
+  "instructions": "SKILL.md"
 }

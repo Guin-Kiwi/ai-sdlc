@@ -1,12 +1,12 @@
 {
-  "purpose": "Map of lifecycle phases and their skills, what is being built (project) versus the AI-SDLC tooling (process), and the files that need a human's review. Each review-gated file and template also says so in its own first lines.",
+  "purpose": "Map of lifecycle phases and their skills (each skill's SKILL.md holds its instructions; its index.json only holds metadata such as model_tier, for scripts), what is being built (project) versus the AI-SDLC tooling (process), and the files that need a human's review. Each review-gated file and template also says so in its own first lines.",
   "phases": [
-    {"phase": 0, "name": "BOOTSTRAP", "skill": "skills/ai-sdlc-0-bootstrap/", "detail": "skills/ai-sdlc-0-bootstrap/index.json"},
-    {"phase": 1, "name": "SPECIFY", "skill": "skills/ai-sdlc-1-specify/", "detail": "skills/ai-sdlc-1-specify/index.json"},
-    {"phase": 2, "name": "DESIGN", "skill": "skills/ai-sdlc-2-design/", "detail": "skills/ai-sdlc-2-design/index.json"},
-    {"phase": 3, "name": "DEVELOP", "skill": "skills/ai-sdlc-3-develop/", "detail": "skills/ai-sdlc-3-develop/index.json"},
-    {"phase": 4, "name": "VALIDATE", "skill": "skills/ai-sdlc-4-validate/", "detail": "skills/ai-sdlc-4-validate/index.json"},
-    {"phase": 5, "name": "DEPLOY", "skill": "skills/ai-sdlc-5-deploy/", "detail": "skills/ai-sdlc-5-deploy/index.json"}
+    {"phase": 0, "name": "BOOTSTRAP", "skill": "skills/ai-sdlc-0-bootstrap/", "instructions": "skills/ai-sdlc-0-bootstrap/SKILL.md"},
+    {"phase": 1, "name": "SPECIFY", "skill": "skills/ai-sdlc-1-specify/", "instructions": "skills/ai-sdlc-1-specify/SKILL.md"},
+    {"phase": 2, "name": "DESIGN", "skill": "skills/ai-sdlc-2-design/", "instructions": "skills/ai-sdlc-2-design/SKILL.md"},
+    {"phase": 3, "name": "DEVELOP", "skill": "skills/ai-sdlc-3-develop/", "instructions": "skills/ai-sdlc-3-develop/SKILL.md"},
+    {"phase": 4, "name": "VALIDATE", "skill": "skills/ai-sdlc-4-validate/", "instructions": "skills/ai-sdlc-4-validate/SKILL.md"},
+    {"phase": 5, "name": "DEPLOY", "skill": "skills/ai-sdlc-5-deploy/", "instructions": "skills/ai-sdlc-5-deploy/SKILL.md"}
   ],
   "lifecycle_state": "docs/TASKS.md",
   "project_context": "docs/PROJECT.md",

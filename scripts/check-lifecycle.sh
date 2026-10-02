@@ -39,7 +39,7 @@ try:
 except Exception as e:
     print(f"✗ docs/INDEX.json is not valid JSON: {e}")
     sys.exit(1)
-paths = [p["skill"] for p in index["phases"]] + [p["detail"] for p in index["phases"]]
+paths = [p["skill"] for p in index["phases"]] + [p["instructions"] for p in index["phases"]]
 paths += index["review_gated"]["paths"] + index["templates"]["paths"] + index["project"] + index["process"]
 missing = [p for p in paths if not os.path.exists(p)]
 for p in missing:
