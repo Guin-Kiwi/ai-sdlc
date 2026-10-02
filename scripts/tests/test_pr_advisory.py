@@ -182,7 +182,7 @@ class ReviewGatedTests(unittest.TestCase):
             self.assertEqual(pa.load_gated(os.path.join(tmp, "missing")), [])
 
 
-class GitOrderTests(unittest.TestCase):
+class GitIntegrationTests(unittest.TestCase):
     def test_commits_are_oldest_first(self):
         with tempfile.TemporaryDirectory() as repo:
             def git(*args):
