@@ -157,6 +157,17 @@ d=$(make_fixture adr-template-filled 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOL
 sed -i 's/ADR-\[NNN\]-\[short-title\]/ADR-004-database/' "$d/docs/adr/ADR-TEMPLATE.md"
 expect_fail "filled-in ADR template" "$d" "docs/adr/ADR-TEMPLATE.md looks filled in"
 
+d=$(make_fixture no-license 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+rm "$d/LICENSE"
+expect_fail "missing LICENSE (CC BY 4.0 attribution)" "$d" "missing LICENSE"
+
+d=$(make_fixture license-unchosen-after-bootstrap 1 in-progress "$UC_OK" "$ACCEPT_OK" "$EVIDENCE_OK")
+expect_warn "project licence not chosen after BOOTSTRAP" "$d" "LICENSE: the project licence is not chosen yet"
+
+d=$(make_fixture license-chosen 1 in-progress "$UC_OK" "$ACCEPT_OK" "$EVIDENCE_OK")
+sed -i 's/\[CHOOSE AT BOOTSTRAP\]/MIT/' "$d/LICENSE"
+expect_no_warnings "project licence chosen" "$d"
+
 d=$(make_fixture tiers-present 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
 expect_no_warnings "every skill declares model_tier" "$d"
 
