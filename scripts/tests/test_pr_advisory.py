@@ -13,8 +13,9 @@ def commit(message, files, sha="abc1234def"):
     return {"sha": sha, "message": message, "files": files}
 
 
-def levels(findings):
-    return [(level, text) for level, text in findings]
+def write(path, text):
+    with open(path, "w") as fh:
+        fh.write(text)
 
 
 class TrailerTests(unittest.TestCase):
@@ -119,12 +120,12 @@ class GitIntegrationTests(unittest.TestCase):
             git("init", "-q", "-b", "main")
             git("config", "user.email", "t@example.com")
             git("config", "user.name", "T")
-            open(os.path.join(repo, "a.txt"), "w").write("a\n")
+            write(os.path.join(repo, "a.txt"), "a\n")
             git("add", ".")
             git("commit", "-q", "-m", "chore: base")
             base = git("rev-parse", "HEAD")
             os.makedirs(os.path.join(repo, "docs", "adr"))
-            open(os.path.join(repo, "docs", "adr", "ADR-001-x.md"), "w").write("x\n")
+            write(os.path.join(repo, "docs", "adr", "ADR-001-x.md"), "x\n")
             git("add", ".")
             git("commit", "-q", "-m", "docs: adr\n\nAgent-Tier: small")
             head = git("rev-parse", "HEAD")
