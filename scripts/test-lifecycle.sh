@@ -107,6 +107,12 @@ expect_pass "VALIDATE state with a concrete use case" "$d"
 d=$(make_fixture placeholder-use-case 1 in-progress "$UC_PLACEHOLDER" "$ACCEPT_OK" "$EVIDENCE_OK")
 expect_fail "placeholder current use case after BOOTSTRAP" "$d" "must name a concrete current use case"
 
+d=$(make_fixture fast-track-entry 3 in-progress 'Fast Track: fix typo in login message' "$ACCEPT_OK" "$EVIDENCE_OK")
+expect_pass "Fast Track entry instead of a use case after BOOTSTRAP" "$d"
+
+d=$(make_fixture fast-track-empty 3 in-progress 'Fast Track:' "$ACCEPT_OK" "$EVIDENCE_OK")
+expect_fail "Fast Track entry without a description" "$d" "must name a concrete current use case"
+
 d=$(make_fixture missing-use-case 1 in-progress 'docs/specs/UC-999-MISSING.md' "$ACCEPT_OK" "$EVIDENCE_OK")
 expect_fail "missing current use case file" "$d" "current use case does not exist"
 
