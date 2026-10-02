@@ -20,6 +20,11 @@ for f in AGENTS.md LICENSE docs/INDEX.json docs/TASKS.md docs/PROJECT.md \
   [ -f "$f" ] || fail "missing $f"
 done
 
+if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  tracked=$(git ls-files | grep -E '(^|/)(\.venv|venv|__pycache__)/' || true)
+  [ -z "$tracked" ] || fail "tracked environment/cache files: $(printf '%s\n' "$tracked" | head -3 | tr '\n' ' ')(remove with git rm -r --cached; see .gitignore)"
+fi
+
 for dir in skills/*/; do
   [ -f "${dir}SKILL.md" ] || fail "missing ${dir}SKILL.md"
   python3 -m json.tool "${dir}index.json" > /dev/null 2>&1 || fail "missing or invalid ${dir}index.json"

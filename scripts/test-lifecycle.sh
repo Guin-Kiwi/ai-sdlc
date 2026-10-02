@@ -179,6 +179,33 @@ d=$(make_fixture tier-invalid 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$
 sed -i 's/"model_tier": "[a-z]*"/"model_tier": "huge"/' "$d/skills/ai-sdlc-3-develop/index.json"
 expect_warn "skill with invalid model_tier" "$d" "skills/ai-sdlc-3-develop/index.json has no valid model_tier"
 
+git_fixture() {
+  local dir="$1"
+  git -C "$dir" init -q
+  git -C "$dir" add -A
+}
+
+d=$(make_fixture tracked-clean 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+git_fixture "$d"
+expect_pass "git work tree without environment or cache files" "$d"
+
+d=$(make_fixture tracked-venv 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+mkdir -p "$d/.venv/bin" && : > "$d/.venv/bin/python"
+git_fixture "$d"
+git -C "$d" add -f .venv/bin/python
+expect_fail "committed .venv" "$d" "tracked environment/cache files"
+
+d=$(make_fixture tracked-pycache 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+mkdir -p "$d/pkg/__pycache__" && : > "$d/pkg/__pycache__/x.pyc"
+git_fixture "$d"
+git -C "$d" add -f pkg/__pycache__/x.pyc
+expect_fail "committed __pycache__" "$d" "tracked environment/cache files"
+
+d=$(make_fixture ignored-venv 0 ready "$UC_PLACEHOLDER" "$ACCEPT_PLACEHOLDER" "$EVIDENCE_PLACEHOLDER")
+mkdir -p "$d/.venv/bin" && : > "$d/.venv/bin/python"
+git_fixture "$d"
+expect_pass "untracked, ignored .venv" "$d"
+
 if [ "$failures" -eq 0 ]; then
   echo "✓ lifecycle scenario tests passed"
 else

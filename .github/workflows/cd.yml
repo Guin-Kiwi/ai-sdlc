@@ -19,7 +19,7 @@ jobs:
     environment: ${{ inputs.environment || 'production' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check deployment configuration
         env:
@@ -41,7 +41,7 @@ jobs:
     environment: ${{ inputs.environment || 'production' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Deploy validated artifact
         run: ./scripts/deploy.sh
