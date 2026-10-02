@@ -1,6 +1,7 @@
 {
   "phase": 4,
   "name": "ai-sdlc-4-validate",
+  "model_tier": "standard",
   "goal": "Verify that the repository is release-ready. Focus on checking existing artifacts, not writing new ones.",
   "source_of_truth": ["docs/TASKS.md", "docs/PROJECT.md"],
   "fast_track": "Run planned checks; record results, omitted checks with reasons, and phase 4. Skip the release-readiness checklist; do not claim full release readiness. Required CI/review still apply.",

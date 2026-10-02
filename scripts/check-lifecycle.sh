@@ -8,6 +8,10 @@ cd "$ROOT_DIR"
 
 failures=0
 fail() { echo "✗ $1"; failures=$((failures + 1)); }
+warn() {
+  echo "⚠ $1"
+  if [ -n "${GITHUB_ACTIONS:-}" ]; then echo "::warning::$1"; fi
+}
 
 for f in AGENTS.md docs/INDEX.json docs/TASKS.md docs/PROJECT.md \
          docs/STANDARDS.md docs/AGENT-GUIDANCE.md \
@@ -19,6 +23,8 @@ done
 for dir in skills/*/; do
   [ -f "${dir}SKILL.md" ] || fail "missing ${dir}SKILL.md"
   python3 -m json.tool "${dir}index.json" > /dev/null 2>&1 || fail "missing or invalid ${dir}index.json"
+  python3 -c 'import json,sys; sys.exit(json.load(open(sys.argv[1])).get("model_tier") not in ("small","standard","large"))' "${dir}index.json" 2>/dev/null \
+    || warn "${dir}index.json has no valid model_tier (small, standard or large); see CONTRIBUTING.md"
 done
 
 python3 - <<'PY' || failures=$((failures + 1))

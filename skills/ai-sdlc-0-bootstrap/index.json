@@ -1,6 +1,7 @@
 {
   "phase": 0,
   "name": "ai-sdlc-0-bootstrap",
+  "model_tier": "large",
   "goal": "Align the repository with the intended system and prepare it for AI-SDLC.",
   "required_input": ["system/app purpose", "framework"],
   "ask_user_if_unclear": true,

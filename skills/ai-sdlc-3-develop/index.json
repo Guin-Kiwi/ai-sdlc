@@ -1,6 +1,7 @@
 {
   "phase": 3,
   "name": "ai-sdlc-3-develop",
+  "model_tier": "standard",
   "goal": "Implement the current use case using strict Test-Driven Development.",
   "source_of_truth": ["docs/TASKS.md", "docs/specs/UC-[NNN]-[NAME].md", "docs/PROJECT.md"],
   "fast_track": "Replace the full test sequence with a regression test before the fix. Documentation-only changes need no code tests. Use the UC/task entry; record actual results and phase 3.",
