@@ -18,6 +18,7 @@
     "Tests before code, no exceptions.",
     "Ask the user if requirements are unclear."
   ],
+  "evidence": ["tests added/updated first when applicable", "minimal implementation", "impacted files", "validation results"],
   "output": "Implementation complete; unit tests pass.",
   "record_in": "docs/TASKS.md"
 }

@@ -11,6 +11,7 @@
     "Do not overwrite workflows without confirmation.",
     "Never store secrets in the repository."
   ],
+  "evidence": ["summary of what changed", "what was validated", "what remains out of scope", "recommended next slice"],
   "output": "Deployment workflow verified or updated.",
   "record_in": "docs/TASKS.md"
 }

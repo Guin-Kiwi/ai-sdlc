@@ -71,6 +71,16 @@ Prefer **extending existing artifacts** instead of creating new ones.
 
 ---
 
+## Evidence to provide
+
+- acceptance criteria
+- boundaries
+- interfaces or components affected
+- risks / tradeoffs
+- validation approach
+
+---
+
 ## Output
 
 Architecture verified or minimally updated.

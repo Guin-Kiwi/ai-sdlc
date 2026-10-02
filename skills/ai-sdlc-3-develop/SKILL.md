@@ -69,6 +69,15 @@ Run the project-specific unit tests documented in `docs/PROJECT.md`.
 
 ---
 
+## Evidence to provide
+
+- tests added/updated first when applicable
+- minimal implementation
+- impacted files
+- validation results
+
+---
+
 ## Output
 
 Implementation complete.

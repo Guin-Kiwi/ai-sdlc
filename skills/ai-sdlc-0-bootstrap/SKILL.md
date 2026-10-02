@@ -122,6 +122,16 @@ Ask the user before removing anything.
 
 ---
 
+## Evidence to provide
+
+- clarified objective
+- constraints
+- assumptions
+- smallest proposed slice
+- open questions
+
+---
+
 ## Output
 
 Repository aligned with intended system.

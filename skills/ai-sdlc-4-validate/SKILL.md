@@ -102,6 +102,15 @@ Create only if missing.
 
 ---
 
+## Evidence to provide
+
+- summary of what changed
+- what was validated
+- what remains out of scope
+- recommended next slice
+
+---
+
 ## Output
 
 Unit and integration tests pass.

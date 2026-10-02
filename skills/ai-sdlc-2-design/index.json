@@ -26,6 +26,7 @@
     "Do not generate tests.",
     "Keep architecture descriptions minimal."
   ],
+  "evidence": ["acceptance criteria", "boundaries", "interfaces or components affected", "risks / tradeoffs", "validation approach"],
   "output": "Architecture verified or minimally updated.",
   "record_in": "docs/TASKS.md"
 }

@@ -21,11 +21,6 @@ software delivery steps.
 - **Clean Architecture**
 - **Small Vertical Slices**
 
-## Purpose of this file
-This file is the **execution router** for agent work.
-It tells an agent what to read first, how to behave, when to stop, and what
-evidence is required before claiming progress.
-
 ---
 
 Phases may be **skipped or repeated**.
@@ -50,8 +45,7 @@ DEPLOY → SPECIFY (feedback)
 - Human-approved decisions → ADR; current architecture → `docs/PROJECT.md`.
 - Durable rules + ADR links → `AGENTS.md`, with human approval/review.
 - Update related files together; preserve decision history and reconcile parallel changes.
-- Team workflow, change-size ladder, branches, PRs and agent git rules → `CONTRIBUTING.md`.
-- When a use case or conversation concludes, remind the human once, without waiting, that `python3 scripts/sdlc.py review` records their review. Never run it yourself.
+- `CONTRIBUTING.md` is the team workflow for humans; agents do not need to read it.
 
 ## Context Load Order
 
@@ -137,20 +131,6 @@ Prefer:
 
 over long freeform explanations.
 
-## Standard task response format
-When performing a task, structure output using this shape when practical:
-
-1. **Goal**
-2. **Inputs consulted**
-3. **Plan**
-4. **Changes made**
-5. **Validation**
-6. **Assumptions / open questions**
-7. **Next smallest step**
-
-Keep responses concise, but include enough detail for a human reviewer to verify
-the work.
-
 ## Definition of done for any agent step
 A step is only done when all applicable items are true:
 
@@ -159,7 +139,7 @@ A step is only done when all applicable items are true:
 - relevant requirements are referenced
 - assumptions are called out
 - tests/checks/review evidence are included where applicable
-- `bash scripts/test.sh` passes; commits end with `Agent-Model:` and `Agent-Tier:` trailers
+- `bash scripts/test.sh` passes
 - no unresolved ambiguity is hidden
 - risky actions were escalated when required
 - the repository remains coherent for the next agent or human
@@ -187,43 +167,20 @@ When stopping, present:
 
 Agents should optimize for reviewability, not autonomy for its own sake.
 
+## Git and review
+
+- Work only on the current use case's or Fast Track's branch; never commit to `main`.
+- Never push, merge, force-push or delete branches unless a human asks in this session.
+- End every commit with `Agent-Model: <model>` and `Agent-Tier: small|standard|large`.
+- When a use case or conversation concludes, add once, without waiting: "Optional: run
+  `python3 scripts/sdlc.py review` to make your human check verifiable." Never run it yourself.
+- Parallel agents each use their own `git worktree`.
+
 ## Security and quality expectations
 
 See `docs/STANDARDS.md` for the standing security/quality checklist (least
 privilege, no hardcoded secrets, input validation, traceability) and
 `docs/AGENT-GUIDANCE.md` for supplementary practices not already covered above.
-
-## Evidence expectations by phase
-
-### Early planning / discovery
-Provide:
-- clarified objective
-- constraints
-- assumptions
-- smallest proposed slice
-- open questions
-
-### Specification / design
-Provide:
-- acceptance criteria
-- boundaries
-- interfaces or components affected
-- risks / tradeoffs
-- validation approach
-
-### Implementation
-Provide:
-- tests added/updated first when applicable
-- minimal implementation
-- impacted files
-- validation results
-
-### Review / handoff
-Provide:
-- summary of what changed
-- what was validated
-- what remains out of scope
-- recommended next slice
 
 ## Rules
 

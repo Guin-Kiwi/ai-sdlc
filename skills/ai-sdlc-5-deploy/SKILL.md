@@ -44,6 +44,15 @@ If no workflow exists:
 
 ---
 
+## Evidence to provide
+
+- summary of what changed
+- what was validated
+- what remains out of scope
+- recommended next slice
+
+---
+
 ## Output
 
 Deployment workflow verified or updated.

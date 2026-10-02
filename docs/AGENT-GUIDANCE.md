@@ -1,8 +1,8 @@
 # Agent Guidance
 
-This document illustrates `AGENTS.md`'s Agent operating rules, Standard task
-response format, and Stop-and-ask triggers with concrete heuristics and
-examples. It does not restate those rules — read `AGENTS.md` first.
+This document illustrates `AGENTS.md`'s Agent operating rules and Stop-and-ask
+triggers with concrete heuristics and examples, and holds the standard task
+response format. Read `AGENTS.md` first; load this file only when you need it.
 
 ---
 
@@ -110,3 +110,19 @@ These sources informed the guidance in this file:
 
 See also:
 - `docs/STANDARDS.md`
+
+---
+
+## Standard task response format
+When performing a task, structure output using this shape when practical:
+
+1. **Goal**
+2. **Inputs consulted**
+3. **Plan**
+4. **Changes made**
+5. **Validation**
+6. **Assumptions / open questions**
+7. **Next smallest step**
+
+Keep responses concise, but include enough detail for a human reviewer to verify
+the work.

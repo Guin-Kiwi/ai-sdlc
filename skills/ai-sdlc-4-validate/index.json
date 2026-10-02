@@ -17,6 +17,7 @@
     "Create files only if they do not exist.",
     "Avoid duplicate workflows."
   ],
+  "evidence": ["summary of what changed", "what was validated", "what remains out of scope", "recommended next slice"],
   "output": "Unit and integration tests pass; repository verified.",
   "record_in": "docs/TASKS.md"
 }

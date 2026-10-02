@@ -80,6 +80,16 @@ Do not add unnecessary text. Write "none" for sections that don't apply.
 
 ---
 
+## Evidence to provide
+
+- acceptance criteria
+- boundaries
+- interfaces or components affected
+- risks / tradeoffs
+- validation approach
+
+---
+
 ## Output
 
 UC specification created or updated.

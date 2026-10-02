@@ -20,6 +20,7 @@
     "Do not invent functionality.",
     "Do not generate code or tests in this phase."
   ],
+  "evidence": ["acceptance criteria", "boundaries", "interfaces or components affected", "risks / tradeoffs", "validation approach"],
   "output": "UC specification created or updated.",
   "record_in": "docs/TASKS.md"
 }

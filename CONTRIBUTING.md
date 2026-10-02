@@ -106,19 +106,8 @@ not. Answering "partly" is fine and tells the PR reviewer where to look.
 
 ## Coding agents
 
-- Work only on the branch for the current use case or Fast Track; never
-  commit to `main`.
-- Never push, merge, force-push or delete branches unless a human asks for it
-  in the current session.
-- Run `bash scripts/test.sh` before proposing a PR and report the result.
-- End every commit with the `Agent-Model:` and `Agent-Tier:` trailers.
-- Stop and ask when the current skill's `model_tier` is above yours, or when
-  the same test still fails after two fix attempts; suggest a larger model.
-- When a use case or conversation concludes, add one line, once, without
-  waiting: "Optional: run `python3 scripts/sdlc.py review` to make your human
-  check verifiable in the project history." Never run it yourself.
-- To run two agents at once, give each its own worktree:
-  `git worktree add ../<repo>-uc-042 uc-042-<short-name>`.
+Agent rules live in `AGENTS.md` → "Git and review", which every agent loads.
+This file is written for humans.
 
 ## Repository setup
 
